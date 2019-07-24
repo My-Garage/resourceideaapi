@@ -1,2 +1,2 @@
-# resourceideaapi
-ResourceIdea API
+# ResourceIdea API
+API for the ResourceIdea app.
