@@ -1,8 +1,8 @@
 import enum
 
 
-class OrganizationStatus(enum.Enum):
-    """Organization status enumeration."""
+class Status(enum.Enum):
+    """Status enumeration."""
     ACTIVE = 'active'
     DISABLED = 'disabled'
     ARCHIVED = 'archived'

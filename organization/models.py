@@ -1,8 +1,9 @@
+import re
+
 from django.db import models
 
-from common.enums import OrganizationStatus
+from common.enums import Status
 from common.models import BaseModel
-import re
 
 
 class Organization(BaseModel):
@@ -18,8 +19,7 @@ class Organization(BaseModel):
                                  editable=False)
     status = models.CharField(
         max_length=10,
-        choices=[(status.value, status.value) for status in OrganizationStatus]
-    )
+        choices=[(status.value, status.value) for status in Status])
 
     class Meta:
         db_table = 'organization'
