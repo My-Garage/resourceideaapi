@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('name', models.CharField(max_length=256)),
                 ('name_slug', models.CharField(blank=True, max_length=256, unique=True)),
-                ('status', models.CharField(choices=[(common.enums.OrganizationStatus('active'), 'active'), (common.enums.OrganizationStatus('disabled'), 'disabled'), (common.enums.OrganizationStatus('archived'), 'archived')], max_length=10)),
+                ('status', models.CharField(choices=[(common.enums.Status('active'), 'active'), (common.enums.Status('disabled'), 'disabled'), (common.enums.Status('archived'), 'archived')], max_length=10)),
             ],
             options={
                 'abstract': False,

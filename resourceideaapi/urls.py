@@ -18,7 +18,10 @@ from django.urls import include
 from django.urls import path
 
 
+BASE_API_URL = 'api/'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('organization.api.urls')),
+    path(f'{BASE_API_URL}', include('organization.api.urls')),
+    path(f'{BASE_API_URL}', include('profiles.api.urls')),
 ]
