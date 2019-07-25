@@ -13,7 +13,7 @@ class Employee(BaseModel):
     phone_number_confirmed = models.BooleanField(null=False, default=False)
     status = models.CharField(
         max_length=10,
-        choices=[(Status.value, Status.value) for status in Status])
+        choices=[(status.value, status.value) for status in Status])
 
     user = models.OneToOneField(User,
                                 null=True,
