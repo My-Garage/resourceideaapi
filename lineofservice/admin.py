@@ -1,3 +1,5 @@
 from django.contrib import admin
+from lineofservice.models import LineOfService
 
-# Register your models here.
+
+admin.site.register(LineOfService)
