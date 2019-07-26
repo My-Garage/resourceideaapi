@@ -13,5 +13,3 @@ class ClientIndustrySerializer(serializers.ModelSerializer):
     class Meta:
         model = ClientIndustry
         fields = ('id', 'name', 'name_slug', 'organization', 'organization_id')
-
-
