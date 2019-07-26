@@ -1,3 +1,5 @@
 from django.contrib import admin
+from client_industry.models import ClientIndustry
 
-# Register your models here.
+
+admin.site.register(ClientIndustry)
