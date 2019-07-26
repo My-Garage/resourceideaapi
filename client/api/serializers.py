@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from organization.api.serializers import OrganizationSerializer
-from client_industry.api.serializers import ClientIndustrySerializer
+
 from client.models import Client
+from client_industry.api.serializers import ClientIndustrySerializer
+from organization.api.serializers import OrganizationSerializer
 
 
 class ClientSerializer(serializers.ModelSerializer):
