@@ -6,6 +6,7 @@ from organization.models import Organization
 
 
 class OrganizationViewSet(mixins.UpdateModelMixin,
+                          mixins.CreateModelMixin,
                           mixins.ListModelMixin,
                           mixins.RetrieveModelMixin,
                           viewsets.GenericViewSet):
