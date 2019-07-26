@@ -8,5 +8,5 @@ router = DefaultRouter()
 router.register(r'linesofservice', LineOfServiceViewSet)
 
 urlpatterns = [
-    path('v0.1', include(router.urls)),
+    path('v0.1/', include(router.urls)),
 ]
