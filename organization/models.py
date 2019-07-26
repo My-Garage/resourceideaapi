@@ -12,7 +12,7 @@ class Organization(BaseModel):
     name = models.CharField(blank=False,
                             max_length=256,
                             null=False)
-    name_slug = models.CharField(blank=True,
+    name_slug = models.CharField(blank=False,
                                  null=False,
                                  max_length=256,
                                  unique=True,
