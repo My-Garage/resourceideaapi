@@ -25,7 +25,7 @@ class Client(BaseModel):
                                      on_delete=models.SET_NULL)
 
     class Meta:
-        db_table = 'client',
+        db_table = 'client'
 
     def save(self, *args, **kwargs):
         self.name_slug = re.sub(r'\W', '-', self.name.lower())
