@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path(f'{BASE_API_URL}', include('organization.api.urls')),
     path(f'{BASE_API_URL}', include('employee.api.urls')),
+    path(f'{BASE_API_URL}', include('client_industry.api.urls')),
 ]

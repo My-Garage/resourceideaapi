@@ -21,6 +21,7 @@ class Employee(BaseModel):
     organization = models.ForeignKey(Organization,
                                      null=True,
                                      on_delete=models.SET_NULL)
+    is_resource = models.BooleanField(null=False, default=False)
 
     class Meta:
         db_table = 'employee'
