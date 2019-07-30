@@ -13,7 +13,7 @@ class ProgressStatus(enum.Enum):
     stages of the progress made on an engagement,
     job or task."""
 
-    NOT_STARTED = 'not started',
+    NOT_STARTED = 'not started'
     RUNNING = 'running'
     IN_REVIEW = 'in review'
     REVIEWED = 'reviewed'

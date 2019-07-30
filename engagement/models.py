@@ -15,27 +15,33 @@ class Engagement(BaseModel):
         db_table = 'engagement'
 
     title = models.CharField(max_length=256)
-    description = models.TextField()
-    planned_start_date = models.DateField()
+    description = models.TextField(null=True, blank=True)
+    planned_start_date = models.DateField(null=True, blank=True)
     actual_start_date = models.DateField(null=True, blank=True)
-    planned_end_date = models.DateField()
+    planned_end_date = models.DateField(null=True, blank=True)
     actual_end_date = models.DateField(null=True, blank=True)
-    color = models.CharField(max_length=7)
+    color = models.CharField(max_length=7, null=True, blank=True)
     status = models.CharField(
-        max_length=10,
+        max_length=20,
         choices=[(status.value, status.value) for status in ProgressStatus])
     manager = models.ForeignKey(Employee,
                                 null=True,
-                                on_delete=models.SET_NULL)
+                                on_delete=models.SET_NULL,
+                                blank=True)
     partner = models.ForeignKey(Employee,
                                 null=True,
-                                on_delete=models.SET_NULL)
+                                on_delete=models.SET_NULL,
+                                related_name='partner_engagements',
+                                blank=True)
     client = models.ForeignKey(Client,
                                null=True,
-                               on_delete=models.SET_NULL)
+                               on_delete=models.SET_NULL,
+                               related_name='manager_engagements',
+                               blank=True)
     line_of_service = models.ForeignKey(LineOfService,
                                         null=True,
-                                        on_delete=models.SET_NULL)
+                                        on_delete=models.SET_NULL,
+                                        blank=True)
     organization = models.ForeignKey(Organization,
                                      null=True,
                                      on_delete=models.SET_NULL)

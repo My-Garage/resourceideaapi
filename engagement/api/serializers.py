@@ -11,7 +11,6 @@ class EngagementSerializer(serializers.ModelSerializer):
     """Serializes engagement data"""
 
     organization = OrganizationSerializer(read_only=True)
-    organization_id = serializers.UUIDField(write_only=True)
     line_of_service = LineOfServiceSerializer(read_only=True)
     line_of_service_id = serializers.UUIDField(write_only=True)
     client = ClientSerializer(read_only=True)
@@ -27,4 +26,4 @@ class EngagementSerializer(serializers.ModelSerializer):
                   'actual_start_date', 'planned_end_date', 'actual_end_date',
                   'color', 'status', 'manager', 'manager_id', 'partner',
                   'partner_id', 'client', 'client_id', 'line_of_service',
-                  'line_of_service_id', 'organization', 'organization_id')
+                  'line_of_service_id', 'organization')
