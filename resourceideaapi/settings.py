@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'client_industry',
     'client',
     'lineofservice',
+    'engagement',
 ]
 
 MIDDLEWARE = [
