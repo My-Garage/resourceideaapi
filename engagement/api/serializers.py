@@ -1,9 +1,10 @@
 from rest_framework import serializers
-from engagement.models import Engagement
-from organization.api.serializers import OrganizationSerializer
-from lineofservice.api.serializers import LineOfServiceSerializer
+
 from client.api.serializers import ClientSerializer
 from employee.api.serializers import EmployeeSerializer
+from engagement.models import Engagement
+from lineofservice.api.serializers import LineOfServiceSerializer
+from organization.api.serializers import OrganizationSerializer
 
 
 class EngagementSerializer(serializers.ModelSerializer):
