@@ -1,3 +1,5 @@
 from django.contrib import admin
+from task_assignment.models import TaskAssignment
 
-# Register your models here.
+
+admin.site.register(TaskAssignment)
