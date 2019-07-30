@@ -1,7 +1,8 @@
 from rest_framework import serializers
+
+from employee.api.serializers import EmployeeSerializer
 from engagement.api.serializers import EngagementSerializer
 from job.models import Job
-from employee.api.serializers import EmployeeSerializer
 
 
 class JobSerializers(serializers.ModelSerializer):

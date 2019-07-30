@@ -1,5 +1,6 @@
 from rest_framework import mixins
 from rest_framework import viewsets
+
 from job.api.serializers import JobSerializers
 from job.models import Job
 

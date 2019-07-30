@@ -1,9 +1,10 @@
 from django.db import models
+
+from common.enums import ProgressStatus
 from common.models import BaseModel
+from employee.models import Employee
 from engagement.models import Engagement
 from organization.models import Organization
-from common.enums import ProgressStatus
-from employee.models import Employee
 
 
 class Job(BaseModel):
