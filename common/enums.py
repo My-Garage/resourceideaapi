@@ -9,7 +9,9 @@ class Status(enum.Enum):
 
 
 class ProgressStatus(enum.Enum):
-    """Progress status enumeration."""
+    """Enumeration indicates the different
+    stages of the progress made on an engagement,
+    job or task."""
 
     NOT_STARTED = 'not started',
     RUNNING = 'running'
