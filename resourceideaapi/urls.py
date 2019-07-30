@@ -28,4 +28,5 @@ urlpatterns = [
     path(f'{BASE_API_URL}', include('client.api.urls')),
     path(f'{BASE_API_URL}', include('lineofservice.api.urls')),
     path(f'{BASE_API_URL}', include('engagement.api.urls')),
+    path(f'{BASE_API_URL}', include('job.api.urls')),
 ]
