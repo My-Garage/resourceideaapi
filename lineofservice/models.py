@@ -15,3 +15,6 @@ class LineOfService(BaseModel):
     class Meta:
         db_table = 'line_of_service'
         verbose_name_plural = 'Lines of Service'
+
+    def __str__(self):
+        return self.name
