@@ -1,10 +1,11 @@
 from django.db import models
-from common.models import BaseModel
-from organization.models import Organization
-from employee.models import Employee
+
 from client.models import Client
-from lineofservice.models import LineOfService
 from common.enums import ProgressStatus
+from common.models import BaseModel
+from employee.models import Employee
+from lineofservice.models import LineOfService
+from organization.models import Organization
 
 
 class Engagement(BaseModel):
