@@ -1,8 +1,9 @@
 from django.db import models
-from common.models import BaseModel
-from organization.models import Organization
-from job.models import Job
+
 from common.enums import ProgressStatus
+from common.models import BaseModel
+from job.models import Job
+from organization.models import Organization
 
 
 class Task(BaseModel):
