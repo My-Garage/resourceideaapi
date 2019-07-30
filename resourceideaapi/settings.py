@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'lineofservice',
     'engagement',
     'job',
+    'task',
 ]
 
 MIDDLEWARE = [
