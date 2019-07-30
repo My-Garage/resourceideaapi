@@ -30,4 +30,5 @@ urlpatterns = [
     path(f'{BASE_API_URL}', include('engagement.api.urls')),
     path(f'{BASE_API_URL}', include('job.api.urls')),
     path(f'{BASE_API_URL}', include('task.api.urls')),
+    path(f'{BASE_API_URL}', include('task_assignment.api.urls')),
 ]
