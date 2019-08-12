@@ -5,8 +5,8 @@ from rest_framework.routers import DefaultRouter
 from employee.api.views import EmployeeViewSet
 
 router = DefaultRouter()
-router.register(r'employees', EmployeeViewSet)
+router.register('', EmployeeViewSet)
 
 urlpatterns = [
-    path('v0.1/', include(router.urls)),
+    path('v0.1/employees/', include(router.urls), name='employees'),
 ]

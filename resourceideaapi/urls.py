@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
+from rest_framework_simplejwt import views as jwt_views
 
 
 BASE_API_URL = 'api/'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path(f'{BASE_API_URL}', include('organization.api.urls')),
     path(f'{BASE_API_URL}', include('employee.api.urls')),
     path(f'{BASE_API_URL}', include('client_industry.api.urls')),
@@ -31,4 +33,12 @@ urlpatterns = [
     path(f'{BASE_API_URL}', include('job.api.urls')),
     path(f'{BASE_API_URL}', include('task.api.urls')),
     path(f'{BASE_API_URL}', include('task_assignment.api.urls')),
+    path(f'{BASE_API_URL}', include('common.urls')),
+
+    path(f'{BASE_API_URL}token/',
+         jwt_views.TokenObtainPairView.as_view(),
+         name='token_obtain_pair'),
+    path(f'{BASE_API_URL}token/refresh/',
+         jwt_views.TokenRefreshView.as_view(),
+         name='token_refresh'),
 ]

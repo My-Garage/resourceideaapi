@@ -5,8 +5,10 @@ from rest_framework.routers import DefaultRouter
 from client_industry.api.views import ClientIndustryViewSet
 
 router = DefaultRouter()
-router.register(r'clientindustries', ClientIndustryViewSet)
+router.register('', ClientIndustryViewSet)
 
 urlpatterns = [
-    path('v0.1/', include(router.urls)),
+    path('v0.1/clientindustries/',
+         include(router.urls),
+         name='clientindustries'),
 ]

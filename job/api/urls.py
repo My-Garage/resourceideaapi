@@ -5,8 +5,8 @@ from job.api.views import JobViewSet
 
 
 router = DefaultRouter()
-router.register(r'jobs', JobViewSet)
+router.register('', JobViewSet)
 
 urlpatterns = [
-    path('v0.1/', include(router.urls)),
+    path('v0.1/jobs/', include(router.urls), name='jobs'),
 ]

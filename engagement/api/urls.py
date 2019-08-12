@@ -5,8 +5,8 @@ from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
-router.register(r'engagements', EngagementViewSet)
+router.register('', EngagementViewSet)
 
 urlpatterns = [
-    path('v0.1/', include(router.urls)),
+    path('v0.1/engagements/', include(router.urls), name='engagements'),
 ]
