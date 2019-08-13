@@ -4,7 +4,7 @@ Permissions for the employee module
 from rest_framework import permissions
 
 
-class EmployeeAccessPermission(permissions.BasePermission):
+class EmployeePermissions(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.user.has_perm('employee.add_employee'):
             return True
