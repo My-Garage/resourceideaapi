@@ -8,5 +8,5 @@ router = DefaultRouter()
 router.register('', EngagementViewSet)
 
 urlpatterns = [
-    path('v0.1/engagements/', include(router.urls), name='engagements'),
+    path('engagements/', include(router.urls), name='engagements'),
 ]

@@ -8,5 +8,5 @@ router = DefaultRouter()
 router.register('', JobViewSet)
 
 urlpatterns = [
-    path('v0.1/jobs/', include(router.urls), name='jobs'),
+    path('jobs/', include(router.urls), name='jobs'),
 ]

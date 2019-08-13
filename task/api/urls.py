@@ -8,5 +8,5 @@ router = DefaultRouter()
 router.register('', TaskViewSet)
 
 urlpatterns = [
-    path('v0.1/tasks/', include(router.urls), name='tasks'),
+    path('tasks/', include(router.urls), name='tasks'),
 ]

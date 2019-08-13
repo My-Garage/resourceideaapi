@@ -8,7 +8,5 @@ router = DefaultRouter()
 router.register('', ClientIndustryViewSet)
 
 urlpatterns = [
-    path('v0.1/clientindustries/',
-         include(router.urls),
-         name='clientindustries'),
+    path('clientindustries/', include(router.urls), name='clientindustries'),
 ]
