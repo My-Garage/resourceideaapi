@@ -1,9 +1,9 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
 from django.contrib.auth.models import Group, Permission
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from common.permission_lists import resource_permissions
+
 from common.permission_lists import administrator_permissions
+from common.permission_lists import resource_permissions
 
 
 @api_view(['GET'])

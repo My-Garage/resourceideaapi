@@ -8,5 +8,5 @@ router = DefaultRouter()
 router.register('', ClientViewSet)
 
 urlpatterns = [
-    path('v0.1/clients/', include(router.urls), name='clients'),
+    path('clients/', include(router.urls), name='clients'),
 ]

@@ -1,21 +1,27 @@
-from rest_framework import mixins
-from rest_framework import viewsets
+from rest_framework import generics
 
+from common.permissions.employee_permissions import EmployeeAccessPermission
+from common.permissions.employee_permissions import RecordOwnerOrAdministrator
 from employee.api.serializers import EmployeeSerializer
 from employee.models import Employee
-from common.permissions import IsOrganizationAdministrator
 
 
-class EmployeeViewSet(mixins.UpdateModelMixin,
-                      mixins.ListModelMixin,
-                      mixins.RetrieveModelMixin,
-                      mixins.CreateModelMixin,
-                      viewsets.GenericViewSet):
-    """Employee view set"""
-
+class EmployeeListCreateView(generics.ListCreateAPIView):
     queryset = Employee.objects.none()
     serializer_class = EmployeeSerializer
-    permission_classes = [IsOrganizationAdministrator, ]
+    permission_classes = [EmployeeAccessPermission]
+
+    def get_queryset(self):
+        return Employee.objects\
+            .filter(
+                organization_id=self.request.user.employee.organization_id)\
+            .all()
+
+
+class EmployeeRetrieveUpdateView(generics.RetrieveUpdateAPIView):
+    queryset = Employee.objects.none()
+    serializer_class = EmployeeSerializer
+    permission_classes = [RecordOwnerOrAdministrator]
 
     def get_queryset(self):
         return Employee.objects\
