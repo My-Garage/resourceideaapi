@@ -19,7 +19,7 @@ from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
 
 
-BASE_API_URL = 'api/'
+BASE_API_URL = 'api/v0.1/'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,10 +35,10 @@ urlpatterns = [
     path(f'{BASE_API_URL}', include('task_assignment.api.urls')),
     path(f'{BASE_API_URL}', include('common.urls')),
 
-    path(f'{BASE_API_URL}token/',
+    path(f'api/token/',
          jwt_views.TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
-    path(f'{BASE_API_URL}token/refresh/',
+    path(f'api/token/refresh/',
          jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'),
 ]
