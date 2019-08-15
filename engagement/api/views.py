@@ -1,9 +1,9 @@
 from rest_framework import mixins
 from rest_framework import viewsets
-from rest_framework import generics
 
 from engagement.api.serializers import EngagementSerializer
 from engagement.models import Engagement
+from common.permissions.engagement_permissions import EngagementPermissions
 
 
 class EngagementViewSet(mixins.CreateModelMixin,
@@ -14,3 +14,4 @@ class EngagementViewSet(mixins.CreateModelMixin,
 
     queryset = Engagement.objects.all()
     serializer_class = EngagementSerializer
+    permission_classes = [EngagementPermissions]

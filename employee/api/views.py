@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from common.permissions.employee_permissions import EmployeePermissions
-from common.permissions.employee_permissions import RecordOwnerOrAdministrator
+from employee.permissions import EmployeePermissions
+from employee.permissions import RecordOwnerOrAdministrator
 from employee.api.serializers import EmployeeSerializer
 from employee.models import Employee
 
