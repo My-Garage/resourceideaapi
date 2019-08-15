@@ -3,7 +3,7 @@ from rest_framework import viewsets
 
 from engagement.api.serializers import EngagementSerializer
 from engagement.models import Engagement
-from common.permissions.engagement_permissions import EngagementPermissions
+from engagement.permissions import EngagementPermissions
 
 
 class EngagementViewSet(mixins.CreateModelMixin,
