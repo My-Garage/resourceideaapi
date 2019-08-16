@@ -9,10 +9,16 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     organization_id = serializers.UUIDField()
     user_id = serializers.IntegerField()
+    fullname = serializers.SerializerMethodField(
+        read_only=True,
+        method_name='get_user_fullname')
+
+    def get_user_fullname(self, obj):
+        return f'{obj.user.get_full_name()}'
 
     class Meta:
         model = Employee
-        fields = ('id', 'file_number', 'phone_number',
+        fields = ('id', 'fullname', 'file_number', 'phone_number',
                   'phone_number_confirmed', 'status',
                   'organization_id', 'user_id', 'is_resource', )
 
