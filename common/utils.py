@@ -12,8 +12,8 @@ def create_resource_groups():
 
     resource_permissions_query = Permission.objects\
         .filter(codename__in=resource_permissions)
-    resource_permissions_list = (permission
-                                 for permission in resource_permissions_query)
+    resource_permissions_list = [permission
+                                 for permission in resource_permissions_query]
     resources_group.permissions.set(resource_permissions_list)
 
 
@@ -27,6 +27,6 @@ def create_administrator_groups():
 
     admin_permissions_query = Permission.objects\
         .filter(codename__in=administrator_permissions)
-    admin_permissions_list = (permission
-                              for permission in admin_permissions_query)
+    admin_permissions_list = [permission
+                              for permission in admin_permissions_query]
     administrator_group.permissions.set(admin_permissions_list)

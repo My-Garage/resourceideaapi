@@ -3,7 +3,7 @@ List of permissions granted to the different groups.
 """
 resource_permissions = ['view_clientindustry',
                         'view_client',
-                        'view_lineofservice'
+                        'view_lineofservice',
                         'view_engagement',
                         'view_job',
                         'view_task',

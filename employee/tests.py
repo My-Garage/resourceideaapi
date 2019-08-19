@@ -1,42 +1,21 @@
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from rest_framework import status
-from rest_framework.test import APITestCase
-
-from common.utils import create_administrator_groups
-from common.utils import create_resource_groups
-from employee.models import Employee
-from organization.models import Organization
 from rest_framework.reverse import reverse
 
+from common.base_test_case import BaseAPITestCase
+from employee.models import Employee
 
-class EmployeeTestCase(APITestCase):
+
+class EmployeeTestCase(BaseAPITestCase):
 
     def setUp(self):
-        self.user_password = 'strongkey'
-        self.user_username = 'testuser'
-        create_administrator_groups()
-        create_resource_groups()
-        self.user = User.objects.create_user(username=self.user_username,
-                                        password=self.user_password,
-                                        first_name='Serunjogi',
-                                        last_name='Joseph')
-        self.user.is_active = True
-        self.user.save()
-        self.organization = Organization.objects.create(name='Test Org',
-                                                   status='active')
+        super(EmployeeTestCase, self).setUp()
         employee = Employee.objects.create(user=self.user,
                                            organization=self.organization,
                                            status='active',
                                            file_number='51251')
         self.employee_id = employee.id
-        response = self.client.post(
-            '/api/token/',
-            data={'username': self.user_username,
-                  'password': self.user_password})
-        self.access_token = response.data['access']
-        self.client.credentials(
-            HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
 
     def test_list_employees_by_administrator(self):
         org_admin = Group.objects.get(name='organization_administrator')

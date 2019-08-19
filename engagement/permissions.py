@@ -1,18 +1,22 @@
 """
 Permissions for the engagement model.
 """
+from django.contrib.auth.models import Permission
 from rest_framework import permissions
 
 
 class EngagementPermissions(permissions.BasePermission):
     def has_permission(self, request, view):
-        if request.user.has_perm('engagement.add_engagement'):
+        if view.action == 'create' \
+                and request.user.has_perm('engagement.add_engagement'):
             return True
 
-        if request.user.has_perm('engagement.change_engagement'):
+        if view.action in ['update', 'partial_update'] \
+                and request.user.has_perm('engagement.change_engagement'):
             return True
 
-        if request.user.has_perm('engagement.view_engagement'):
+        if view.action in ['list', 'retrieve'] \
+                and request.user.has_perm('engagement.view_engagement'):
             return True
 
         return False

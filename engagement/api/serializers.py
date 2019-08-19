@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from client.api.serializers import ClientSerializer
-from employee.api.serializers import EmployeeSerializer
 from employee.api.serializers import ManagerSerializer
 from engagement.models import Engagement
 from lineofservice.api.serializers import LineOfServiceSerializer
@@ -17,19 +16,14 @@ class EngagementSerializer(serializers.ModelSerializer):
     client_id = serializers.UUIDField(write_only=True)
     client = ClientSerializer(read_only=True)
     manager_id = serializers.UUIDField(write_only=True)
-    # manager = serializers.StringRelatedField(read_only=True)
-    # manager = serializers.HyperlinkedRelatedField(
-    #     read_only=True,
-    #     view_name='employee-detail'
-    # )
     manager = ManagerSerializer(read_only=True)
     partner = serializers.StringRelatedField(read_only=True)
     partner_id = serializers.UUIDField(write_only=True)
 
     class Meta:
         model = Engagement
-        fields = ('id', 'title', 'description', 'planned_start_date',
+        fields = ['id', 'title', 'description', 'planned_start_date',
                   'actual_start_date', 'planned_end_date', 'actual_end_date',
                   'color', 'status', 'manager', 'manager_id', 'partner',
                   'partner_id', 'client', 'client_id', 'line_of_service',
-                  'line_of_service_id', 'organization')
+                  'line_of_service_id', 'organization']
