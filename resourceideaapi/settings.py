@@ -38,6 +38,7 @@ except requests.exceptions.RequestException:
 
 if EC2_PRIVATE_IP:
     ALLOWED_HOSTS.append(EC2_PRIVATE_IP)
+    print(EC2_PRIVATE_IP)
 
 
 # Application definition
