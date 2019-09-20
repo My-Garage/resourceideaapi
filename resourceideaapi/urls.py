@@ -35,6 +35,7 @@ urlpatterns = [
     path(f'{BASE_API_URL}', include('task_assignment.api.urls')),
     path(f'{BASE_API_URL}', include('common.urls')),
 
+    path('', include('home.urls')),
     path(f'api/token/',
          jwt_views.TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
