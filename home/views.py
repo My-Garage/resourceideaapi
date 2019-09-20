@@ -7,5 +7,5 @@ class IndexView(APIView):
     """API landing response"""
     permission_classes = [AllowAny,]
 
-    def get(self, request, format=None):
+    def get(self):
         return Response({'message': 'Welcome to the ResourceIdea API'})
