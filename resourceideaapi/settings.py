@@ -113,6 +113,7 @@ if 'RDS_DB_NAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
+    print('DATABASE NAME:', os.environ['RDS_DB_NAME'])
 else:
     DATABASES = {
         'default': {
