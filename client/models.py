@@ -23,6 +23,7 @@ class Client(BaseModel):
     organization = models.ForeignKey(Organization,
                                      null=True,
                                      on_delete=models.SET_NULL)
+    src_client_id = models.CharField(max_length=40, null=True, blank=True)
 
     class Meta:
         db_table = 'client'
