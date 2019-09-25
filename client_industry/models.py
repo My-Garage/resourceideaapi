@@ -9,11 +9,10 @@ from organization.models import Organization
 class ClientIndustry(BaseModel):
     """Client industry model"""
 
-    name = models.CharField(max_length=100, unique=True, null=False)
+    name = models.CharField(max_length=100, null=False)
     name_slug = models.CharField(max_length=100,
                                  editable=False,
-                                 null=False,
-                                 unique=True)
+                                 null=False)
     organization = models.ForeignKey(Organization,
                                      null=True,
                                      on_delete=models.SET_NULL)
