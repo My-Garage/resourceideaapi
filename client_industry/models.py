@@ -21,6 +21,7 @@ class ClientIndustry(BaseModel):
     class Meta:
         db_table = 'client_industry'
         verbose_name_plural = 'Client Industries'
+        unique_together = ['name', 'name_slug', 'organization']
 
     def save(self, *args, **kwargs):
         self.name_slug = re.sub(r'\W', '-', self.name.lower())
