@@ -35,6 +35,7 @@ class Job(BaseModel):
                                 on_delete=models.SET_NULL,
                                 blank=True,
                                 related_name='manager_jobs')
+    src_job_id = models.CharField(max_length=40, null=True, blank=True)
 
     def __str__(self):
         return self.title
