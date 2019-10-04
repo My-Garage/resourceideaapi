@@ -1,8 +1,10 @@
-from django.db import models
-from common.models import BaseModel
-from common.enums import Status
-from organization.models import Organization
 from django.contrib.auth.models import User
+from django.db import models
+
+from common.enums import Status
+from common.models import BaseModel
+from job_position.models import JobPosition
+from organization.models import Organization
 
 
 class Employee(BaseModel):
@@ -22,6 +24,10 @@ class Employee(BaseModel):
                                      null=True,
                                      on_delete=models.SET_NULL)
     is_resource = models.BooleanField(null=False, default=False)
+    email_confirmed = models.BooleanField(null=False, default=False)
+    job_position = models.ForeignKey(JobPosition,
+                                     null=True,
+                                     on_delete=models.SET_NULL)
 
     class Meta:
         db_table = 'employee'
