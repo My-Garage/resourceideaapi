@@ -1,6 +1,7 @@
 """Department app model"""
-from common.models import BaseModel
 from django.db import models
+
+from common.models import BaseModel
 from organization.models import Organization
 
 

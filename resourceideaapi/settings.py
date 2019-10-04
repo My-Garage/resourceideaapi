@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'task',
     'task_assignment',
     'department',
+    'job_position',
 ]
 
 MIDDLEWARE = [
