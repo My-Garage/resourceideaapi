@@ -28,6 +28,7 @@ class Employee(BaseModel):
     job_position = models.ForeignKey(JobPosition,
                                      null=True,
                                      on_delete=models.SET_NULL)
+    date_terminated = models.DateField(null=True, blank=True)
 
     class Meta:
         db_table = 'employee'
