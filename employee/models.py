@@ -29,6 +29,7 @@ class Employee(BaseModel):
                                      null=True,
                                      on_delete=models.SET_NULL)
     date_terminated = models.DateField(null=True, blank=True)
+    src_resource_id = models.CharField(max_length=40, null=True, blank=True)
 
     class Meta:
         db_table = 'employee'
