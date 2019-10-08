@@ -2,6 +2,7 @@ from django.db import models
 from common.models import BaseModel
 from task.models import Task
 from employee.models import Employee
+from organization.models import Organization
 
 
 class TaskAssignment(BaseModel):
@@ -18,6 +19,9 @@ class TaskAssignment(BaseModel):
     employee = models.ForeignKey(Employee,
                                  null=True,
                                  on_delete=models.SET_NULL)
+    organization = models.ForeignKey(Organization,
+                                     null=True,
+                                     on_delete=models.SET_NULL)
 
     def __str__(self):
         return '%s - %s' % (str(self.task), str(self.employee))
