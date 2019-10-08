@@ -10,7 +10,8 @@ from organization.models import Organization
 class Employee(BaseModel):
     """Employee model."""
 
-    file_number = models.CharField(max_length=10, unique=True)
+    file_number = models.CharField(max_length=10, unique=True, null=True,
+                                   blank=True)
     phone_number = models.CharField(max_length=15, unique=True, null=True)
     phone_number_confirmed = models.BooleanField(null=False, default=False)
     status = models.CharField(
