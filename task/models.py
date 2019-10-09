@@ -27,8 +27,6 @@ class Task(BaseModel):
                             on_delete=models.SET_NULL,
                             blank=True)
     src_job_id = models.CharField(max_length=40, null=True, blank=True)
-    start_date_time = models.DateTimeField(null=True, blank=True)
-    end_date_time = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.title

@@ -11,7 +11,7 @@ class TaskAssignment(BaseModel):
     class Meta:
         db_table = 'task_assignment'
 
-    start_date_time = models.DateTimeField()
+    start_date_time = models.DateTimeField(null=True, blank=True)
     completion_date_time = models.DateTimeField(null=True, blank=True)
     task = models.ForeignKey(Task,
                              null=True,
