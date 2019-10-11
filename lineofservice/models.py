@@ -11,6 +11,7 @@ class LineOfService(BaseModel):
     organization = models.ForeignKey(Organization,
                                      null=True,
                                      on_delete=models.SET_NULL)
+    src_los_id = models.UUIDField(null=True, blank=True)
 
     class Meta:
         db_table = 'line_of_service'
