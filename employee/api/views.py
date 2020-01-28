@@ -17,6 +17,9 @@ class EmployeeListCreateView(generics.ListCreateAPIView):
                 organization_id=self.request.user.employee.organization_id)\
             .all()
 
+    def perform_create(self, serializer):
+        pass
+
 
 class EmployeeRetrieveUpdateView(generics.RetrieveUpdateAPIView):
     queryset = Employee.objects.none()
