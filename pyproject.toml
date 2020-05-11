@@ -10,6 +10,8 @@ django = "^2.2"
 docker = "^4.2.0"
 psycopg2-binary = "^2.7"
 flake8 = "^3.7.9"
+djangorestframework = "^3.11.0"
+djangorestframework-jwt = "^1.11.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.7.9"
