@@ -1,0 +1,16 @@
+Links
+- Installing nodejs (https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04)
+- Installing nginx (https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
+https://phoenixnap.com/kb/install-nginx-on-ubuntu
+
+- How To Secure Nginx with Let's Encrypt on Ubuntu (https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04)
+
+- How do I point my custom domain to my IP:Port (00.00.00.00:3000)? (https://www.digitalocean.com/community/questions/how-do-i-point-my-custom-domain-to-my-ip-port-41-111-20-36-8080
+
+When a new server / droplet is created, nginx is to be installed and secured with ssl to enable secure connections.
+
+1. Make sure your ssh keys are added on digitalocean.
+2. SSH to the server. 'ssh root@server_ip' Enter the passphrase for your private key.
+3. Install nginx and enable security with ssh.
+4. Restart nginx.
+5. Try accessing the site in the browser and esnure it's resolving on https, with custom domain pointing to IP:Port
