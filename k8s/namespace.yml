@@ -1,0 +1,7 @@
+#resource-idea namespace for the cluster
+#to create run, kubectl create -f ./namespace.yml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: resource-idea-api

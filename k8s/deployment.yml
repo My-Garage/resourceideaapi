@@ -1,0 +1,26 @@
+#resource-idea namespace for the api
+#to create run, kubectl create -f ./deployment.yml
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: resource-idea-api
+  labels:
+    #Project ID
+    app: resource-idea
+spec:
+  #Run two instances of our application
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: resource-idea
+    spec:
+      #Container details
+      containers:
+        - name: resource-idea-api
+          image: ................
+          imagePullPolicy: Always
+          #Ports to expose
+          ports:
+          - containerPort: 8000
