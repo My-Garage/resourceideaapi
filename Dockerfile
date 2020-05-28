@@ -1,17 +1,34 @@
-FROM python:3-slim
+# dockerfile for prod
+# dockerfile for testing the bulding (docker build -t image-name .)
+# NB: It doesn't include connections to the DB
 
-ARG APP_ENV
+# Define image to build from
+FROM python:3.6-slim
 
-ENV APP_ENV=${APP_ENV} \
-    PYTHONUNBUFFERED=1 \
-    POETRY_VERSION=1.0.5
+# Docker set up maintainer 
+LABEL AUTHOR="scott/seggie <dev@resource.org>"
+LABEL app="resource-idea-api"
 
-RUN pip install "poetry=${POETRY_VERSION}"
+ENV PYTHONUNBUFFERED 1
 
+# Create directory to hold the application code inside the image
+RUN mkdir /code
+
+# change to directory
 WORKDIR /code
-COPY poetry.lock pyproject.toml manage.py /code/
 
-RUN poetry config virtualenvs.create false \
-    && poetry install $(test "$APP_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
+# set 8000 as port and expose it
+ENV PORT=8000
+EXPOSE 8000
 
-COPY . /code
+# Copy requirements files
+COPY requirements.txt requirements.dev.txt /code/
+
+# Install requirements
+RUN pip install -r requirements.txt requirements.dev.txt
+
+# Copy all project files to the working directory
+COPY . /code/
+
+# launch the application
+CMD ["python" "manage.py" "runserver" "0.0.0.0:8000"]
