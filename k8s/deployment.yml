@@ -29,6 +29,3 @@ spec:
           ports:
             - containerPort: 8000
               name: http
-
-
-          
