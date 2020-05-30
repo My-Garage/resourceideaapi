@@ -131,4 +131,5 @@ typings/
 # Security-related files
 *.pem
 *.crt
+config_scripts/ca_certificate.crt
 
