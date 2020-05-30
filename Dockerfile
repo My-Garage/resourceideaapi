@@ -1,4 +1,4 @@
-# dockerfile for prod
+# dockerfile for prod from root dir
 # dockerfile for testing the bulding (docker build -t image-name .)
 # NB: It doesn't include connections to the DB
 
@@ -17,18 +17,27 @@ RUN mkdir /code
 # change to directory
 WORKDIR /code
 
-# set 8000 as port and expose it
-ENV PORT=8000
-EXPOSE 8000
-
 # Copy requirements files
 COPY requirements.txt requirements.dev.txt /code/
 
 # Install requirements
-RUN pip install -r requirements.txt requirements.dev.txt
+RUN pip3 install -r requirements.txt 
+
+# Install dev requirements 
+RUN pip3 install -r requirements.dev.txt
 
 # Copy all project files to the working directory
 COPY . /code/
 
+# source secret key
+RUN /bin/bash -c "source .env"
+
+# export secret key
+ENV SECRET_KEY=SENwSzdDakJhNDJteTQK
+
+# set 8000 as port and expose it
+ENV PORT=8000
+EXPOSE 8000
+
 # launch the application
-CMD ["python" "manage.py" "runserver" "0.0.0.0:8000"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
