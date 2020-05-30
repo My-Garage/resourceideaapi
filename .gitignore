@@ -132,4 +132,3 @@ typings/
 *.pem
 *.crt
 config_scripts/ca_certificate.crt
-
