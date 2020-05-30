@@ -120,9 +120,15 @@ venv.bak/
 
 !/resourceideaapi/static/
 .DS_Store
+
 /.env.dev
 /.env.local
 resourceideaapi/static
 
 #pyright
 typings/
+
+# Security-related files
+*.pem
+*.crt
+
