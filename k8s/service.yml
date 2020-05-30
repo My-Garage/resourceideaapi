@@ -5,10 +5,10 @@ kind: Service
 apiVersion: v1
 metadata:
   #Service name
-  name: resource-idea-api
+  name: resourceideaapi
 spec:
   selector:
-    app: resource-idea
+    app: resourceidea
   ports:
     - protocol: TCP
       port: 8000

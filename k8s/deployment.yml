@@ -4,21 +4,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: resource-idea-api
+  name: resourceideaapi
   labels:
     #Project ID
-    app: resource-idea
+    app: resourceidea
 spec:
   #Run two instances of our application
   replicas: 1
   template:
     metadata:
       labels:
-        app: resource-idea
+        app: resourceidea
     spec:
       #Container details
       containers:
-        - name: resource-idea-api
+        - name: resourceideaapi
           image: ................
           imagePullPolicy: Always
           #Ports to expose
