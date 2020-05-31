@@ -1,0 +1,19 @@
+# kubectl apply -f k8s/role-binding.yml
+
+# create a Role Binding, which is used to make the connection between the Role and the Service Account
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cicd
+  resourceideaapi
+# list of resources you are binding your role to
+subjects:
+  - kind: ServiceAccount
+    name: cicd
+    namespace: default
+# Role you want to bind to something
+roleRef:
+  kind: Role
+  name: cicd
+  apiGroup: rbac.authorization.k8s.io
