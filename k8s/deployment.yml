@@ -1,10 +1,11 @@
 #resource-idea namespace for the api
-#to create run, kubectl create -f ./deployment.yml
+#to create run, kubectl create -f k8s/deployment.yml
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: resourceideaapi
+  namespace: resourceideaapi
   labels:
     #Project ID
     app: resourceidea
@@ -24,3 +25,7 @@ spec:
           #Ports to expose
           ports:
           - containerPort: 8000
+          - name: http
+
+
+          
