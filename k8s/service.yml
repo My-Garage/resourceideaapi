@@ -1,11 +1,15 @@
 #resource-idea service for the api
-#to create run, kubectl create -f ./service.yml
+#to create run, kubectl create -f k8s/service.yml
 
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   #Service name
   name: resourceideaapi
+  namespace: resourceideaapi
+  labels:
+    #Project ID
+    app: resourceidea
 spec:
   selector:
     app: resourceidea
@@ -13,4 +17,5 @@ spec:
     - protocol: TCP
       port: 8000
       targetPort: 8000
+      name: http
   type: LoadBalancer
