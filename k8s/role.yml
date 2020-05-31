@@ -1,0 +1,14 @@
+# kubectl apply -f k8s/role.yml
+
+# create a Role, in which you specify what resources it has access to on your cluster
+
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cicd
+  namespace: resourceideaapi
+# a list of resources this role has access to
+rules:
+  - apiGroups: ["", "apps", "batch", "extensions"]
+    resources: ["deployments", "services", "replicasets", "pods", "jobs", "cronjobs"]
+    verbs: ["*"]
