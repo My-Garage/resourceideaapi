@@ -6,12 +6,12 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: cicd
-  resourceideaapi
+  namespace: resourceideaapi
 # list of resources you are binding your role to
 subjects:
   - kind: ServiceAccount
     name: cicd
-    namespace: default
+    namespace: resourceideaapi
 # Role you want to bind to something
 roleRef:
   kind: Role
