@@ -12,6 +12,9 @@ metadata:
 spec:
   #Run two instances of our application
   replicas: 1
+  selector:
+    matchLabels:
+      app: resourceidea
   template:
     metadata:
       labels:
@@ -20,12 +23,12 @@ spec:
       #Container details
       containers:
         - name: resourceideaapi
-          image: ................
+          image: 1994scott/resourceapi:first
           imagePullPolicy: Always
           #Ports to expose
           ports:
-          - containerPort: 8000
-          - name: http
+            - containerPort: 8000
+              name: http
 
 
           
