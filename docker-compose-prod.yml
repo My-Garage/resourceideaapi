@@ -1,5 +1,5 @@
 # compose file for production environment
-# docker-compose -f docker-compose-dev.yml build   and then
+# docker-compose -f docker-compose-prod.yml build   and then
 # docker-compose -f docker-compose-prod.yml up
 
 version: '3'
