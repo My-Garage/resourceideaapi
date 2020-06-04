@@ -1,9 +1,9 @@
 # ResourceIdea API
-======================
+
 API for the ResourceIdea app.
 
 ## Backend Dev setup
-=====================
+
 ### Local setup
 
 Install postgres on docker:
