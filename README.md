@@ -6,7 +6,7 @@ API for the ResourceIdea app.
 
 ### Local setup
 
-1. Install postgres on docker:
+##### Install postgres on docker:
 - Pull postgres docker image
 ```
 docker pull postgres:[tag]
@@ -20,7 +20,7 @@ mkdir -p $HOME/docker/volumes/postgres
 docker run --rm --name pg-docker -e POSTGRES_PASSWORD=<your_password> -d -p 54320:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
 ```
 
-2. Create database
+#### Create database
 ```
 docker exec -it pg-docker psql -U postgres -c "create database resourceidea"
 ```
