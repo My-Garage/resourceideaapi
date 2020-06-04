@@ -90,6 +90,7 @@ ENV/
 env.bak/
 venv.bak/
 .env.dev
+.env.local
 
 # Spyder project settings
 .spyderproject
@@ -120,3 +121,4 @@ venv.bak/
 !/resourceideaapi/static/
 .DS_Store
 /.env.dev
+/.env.local
