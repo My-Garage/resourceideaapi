@@ -20,7 +20,7 @@ mkdir -p $HOME/docker/volumes/postgres
 docker run --rm --name pg-docker -e POSTGRES_PASSWORD=<your_password> -d -p 54320:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
 ```
 
-#### Create database
+##### Create database
 ```
 docker exec -it pg-docker psql -U postgres -c "create database resourceidea"
 ```
