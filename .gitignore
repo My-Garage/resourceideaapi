@@ -119,4 +119,4 @@ venv.bak/
 
 !/resourceideaapi/static/
 .DS_Store
-!/.env.dev
+/.env.dev
