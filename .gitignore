@@ -122,3 +122,4 @@ venv.bak/
 .DS_Store
 /.env.dev
 /.env.local
+resourceideaapi/static
