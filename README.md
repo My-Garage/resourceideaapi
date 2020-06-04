@@ -9,32 +9,32 @@ API for the ResourceIdea app.
 ##### Install postgres on docker:
 - Pull postgres docker image.
 ```
-docker pull postgres:[tag]
+$ docker pull postgres:[tag]
 ```
 - Create volume location that will be used to persist the changes made.
 ```
-mkdir -p $HOME/docker/volumes/postgres
+$ mkdir -p $HOME/docker/volumes/postgres
 ```
 - Run the postgres container.
 ```
-docker run --rm --name pg-docker -e POSTGRES_PASSWORD=<your_password> -d -p 54320:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
+$ docker run --rm --name pg-docker -e POSTGRES_PASSWORD=<your_password> -d -p 54320:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
 ```
 
 ##### Database setup
 - Create the database.
 ```
-docker exec -it pg-docker psql -U postgres -c "create database resourceidea"
+$ docker exec -it pg-docker psql -U postgres -c "create database resourceidea"
 ```
 - Load the environment variables.
-```export $(cat .env.local)```
+```$ export $(cat .env.local)```
 - Run migrations
 ```
-python manage.py makemigrations
+$ python manage.py makemigrations
 
-python migrate
+$ python migrate
 ```
 - Create admin user
-```python manage.py createsuperuser```
+```$ python manage.py createsuperuser```
 
 ##### Run server
-```python manage.py runserver```
+```$ python manage.py runserver```
