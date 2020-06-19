@@ -1,6 +1,7 @@
 import re
 
 from django.db import models
+from django.utils import timezone
 
 from common.enums import Status
 from common.models import BaseModel
@@ -27,6 +28,12 @@ class Organization(BaseModel):
     def save(self, *args, **kwargs):
         self.name_slug = re.sub(r'\W', '-', self.name.lower())
         super(Organization, self).save(*args, **kwargs)
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.status = Status.DELETED.value
+        self.save()
 
     def __str__(self):
         return self.name

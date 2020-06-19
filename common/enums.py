@@ -6,6 +6,7 @@ class Status(enum.Enum):
     ACTIVE = 'active'
     DISABLED = 'disabled'
     ARCHIVED = 'archived'
+    DELETED = 'deleted'
 
 
 class ProgressStatus(enum.Enum):

@@ -8,4 +8,4 @@ class OrganizationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Organization
-        exclude = ('created_at', 'updated_at', 'is_deleted', 'deleted_at',)
+        exclude = ('created_at', 'updated_at', 'is_deleted', 'deleted_at', )
