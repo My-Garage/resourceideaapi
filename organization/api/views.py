@@ -18,9 +18,13 @@ class OrganizationViewSet(mixins.UpdateModelMixin,
     permission_classes = (IsAuthenticated, )
 
     def list(self, request, *args, **kwargs):
-        status_filters = request.query_params.get('status', None).split(sep=',')
         queryset = self.get_queryset()
-        if status_filters is not None:
+
+        status = request.query_params.get('status', None)
+        if status is not None:
+            status_filters = status.split(sep=',')
             queryset = queryset.filter(status__in=status_filters)
+
         serializer = OrganizationSerializer(queryset, many=True)
+
         return Response(serializer.data)
