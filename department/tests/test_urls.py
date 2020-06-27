@@ -1,8 +1,6 @@
 import pytest
 from rest_framework.reverse import reverse
 
-from department.models import Department
-
 
 @pytest.mark.usefixtures('organization', 'user', 'client')
 class TestDepartmentEndpoints:
