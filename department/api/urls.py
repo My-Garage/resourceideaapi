@@ -5,8 +5,8 @@ from rest_framework.routers import DefaultRouter
 from department.api.views import DepartmentViewSet
 
 router = DefaultRouter()
-router.register('', DepartmentViewSet, 'departments')
+router.register('', DepartmentViewSet, basename='department')
 
 urlpatterns = [
-    path('departments/', include(router.urls), name='departments'),
+    path('departments/', include(router.urls), name='department'),
 ]

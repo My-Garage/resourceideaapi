@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'common',
 
     'rest_framework',
+    'rest_framework.authtoken',
 
     'organization',
     'employee',
