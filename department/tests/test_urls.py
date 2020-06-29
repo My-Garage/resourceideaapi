@@ -2,7 +2,6 @@ import pytest
 from rest_framework.reverse import reverse
 
 
-@pytest.mark.usefixtures('organization', 'user', 'client')
 class TestDepartmentEndpoints:
     pytestmark = [pytest.mark.integrationtest, pytest.mark.django_db]
 
