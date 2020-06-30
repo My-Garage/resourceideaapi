@@ -7,5 +7,4 @@ class ConsoleLoggingMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
-        print('TIMESTAMP:', request.timestamp, 'USER:', request.user)
         return response
