@@ -13,7 +13,6 @@ class LineOfServiceViewSet(mixins.CreateModelMixin,
                            mixins.DestroyModelMixin,
                            viewsets.GenericViewSet):
 
-    queryset = LineOfService.objects.all()
     serializer_class = LineOfServiceSerializer
 
     def get_queryset(self):

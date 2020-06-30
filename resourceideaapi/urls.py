@@ -35,6 +35,7 @@ urlpatterns = [
     path(f'{BASE_API_URL}', include('task_assignment.api.urls')),
     path(f'{BASE_API_URL}', include('common.urls')),
     path(f'{BASE_API_URL}', include('department.api.urls')),
+    path(f'{BASE_API_URL}', include('job_position.api.urls')),
 
     path('', include('home.urls')),
     path(f'api/token/',
