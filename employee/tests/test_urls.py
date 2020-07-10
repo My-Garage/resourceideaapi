@@ -99,7 +99,6 @@ class TestEmployeeEndpoints:
 
         assert employee.date_terminated is None
         resp = api_client.patch(url)
-        resp_json = resp.json()
 
         employee.refresh_from_db()
 
