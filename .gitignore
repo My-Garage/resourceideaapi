@@ -123,3 +123,6 @@ venv.bak/
 /.env.dev
 /.env.local
 resourceideaapi/static
+
+#pyright
+typings/

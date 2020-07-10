@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-from employee.api.serializers import EmployeeSerializer
 from engagement.api.serializers import EngagementSerializer
 from job.models import Job
 
@@ -10,7 +9,6 @@ class JobSerializers(serializers.ModelSerializer):
 
     engagement = EngagementSerializer(read_only=True)
     engagement_id = serializers.UUIDField(write_only=True)
-    manager = EmployeeSerializer(read_only=True)
     manager_id = serializers.UUIDField(write_only=True)
 
     class Meta:
