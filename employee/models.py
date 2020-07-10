@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 from common.enums import Status
 from common.models import BaseModel
@@ -14,9 +15,8 @@ class Employee(BaseModel):
                                    blank=True)
     phone_number = models.CharField(max_length=15, unique=True, null=True)
     phone_number_confirmed = models.BooleanField(null=False, default=False)
-    status = models.CharField(
-        max_length=10,
-        choices=[(status.value, status.value) for status in Status])
+    status = models.CharField(max_length=10,
+                              choices=[(status.value, status.value) for status in Status])
 
     user = models.OneToOneField(User,
                                 null=True,
@@ -34,6 +34,38 @@ class Employee(BaseModel):
 
     class Meta:
         db_table = 'employee'
+
+    @property
+    def fullname(self):
+        return self.user.get_full_name()
+
+    @property
+    def first_name(self):
+        return self.user.first_name
+
+    @property
+    def last_name(self):
+        return self.user.last_name
+
+    @property
+    def email(self):
+        return self.user.email
+
+    @property
+    def job_position_title(self):
+        title = None
+        if self.job_position is not None:
+            title = self.job_position.title
+        return title
+
+    @property
+    def username(self):
+        return self.user.username
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save()
 
     def __str__(self):
         return '%s %s' % (self.user.first_name, self.user.last_name)
