@@ -23,7 +23,7 @@ spec:
       #Container details
       containers:
         - name: resourceideaapi
-          image: 1994scott/resourceapi:first
+          image: 1994scott/resourceapi:$COMMIT_SHA1
           imagePullPolicy: Always
           #Ports to expose
           ports:
