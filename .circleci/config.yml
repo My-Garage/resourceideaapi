@@ -86,7 +86,7 @@ jobs:
             docker tag $IMAGE_NAME:latest $IMAGE_NAME:$CIRCLE_SHA1
             docker push $IMAGE_NAME:$CIRCLE_SHA1
       - run:
-          name: Install envsubst
+          name: Install envsubst.
           command: |
             sudo apt-get update && sudo apt-get -y install gettext-base
       - run:
