@@ -25,12 +25,12 @@ jobs:
           command: |
             sudo apt-get update && sudo apt-get -y install gettext-base
       - run:
-          name: Install kubectl
+          name: Install kubectl.
           command: |
             curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
             chmod u+x ./kubectl
       - run:
-          name: Deploy Code
+          name: Deploy Code.
           command: chmod +x ~/config_scripts/ci-deploy.sh && ./config_scripts/ci-deploy.sh
 workflows:
   version: 2
