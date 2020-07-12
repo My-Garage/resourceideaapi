@@ -14,23 +14,23 @@ jobs:
           command: |
             docker build -t $IMAGE_NAME:latest .
       - run:
-          name: Push Docker Image.
+          name: Push Docker Image
           command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker tag $IMAGE_NAME:latest $IMAGE_NAME:$CIRCLE_SHA1
-            docker push $IMAGE_NAME:latest
-            docker push $IMAGE_NAME:$CIRCLE_SHA1
+          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          docker tag $IMAGE_NAME:latest $IMAGE_NAME:$CIRCLE_SHA1
+          docker push $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:$CIRCLE_SHA1
       - run:
-          name: Install envsubst.
+          name: Install envsubst
           command: |
-            sudo apt-get update && sudo apt-get -y install gettext-base
+          sudo apt-get update && sudo apt-get -y install gettext-base
       - run:
-          name: Install kubectl.
+          name: Install kubectl
           command: |
-            curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-            chmod u+x ./kubectl
+          curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+          chmod u+x ./kubectl
       - run:
-          name: Deploy Code.
+          name: Deploy Code
           command: chmod +x ~/config_scripts/ci-deploy.sh && ./config_scripts/ci-deploy.sh
 workflows:
   version: 2
