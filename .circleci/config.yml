@@ -14,7 +14,7 @@ jobs:
           name: Migrate and seed
           command: python3 manage.py makemigrations && python3 migrate
       - run:
-          name: run tests
+          name: run tests.
           command: pytest 
           timeout: 5000
   deploy:
