@@ -9,22 +9,13 @@ jobs:
       - setup_remote_docker
       - run:
           name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip3 install -r requirements.txt && pip3 install -r requirements.dev.txt
-      - save_cache:
-        paths:
-          - ./venv
-        key: v1-dependencies-{{ checksum "requirements.txt" }}
+          command: sudo pip3 install -r requirements.txt && sudo pip3 install -r requirements.dev.txt
       - run:
           name: Migrate and seed
           command: python3 manage.py makemigrations && python3 migrate
       - run:
           name: run tests.
-          command: |
-            . venv/bin/activate
-            pytest 
+          command: pytest 
           timeout: 5000
   deploy:
     docker:
