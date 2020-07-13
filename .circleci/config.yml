@@ -31,7 +31,7 @@ jobs:
             chmod u+x ./kubectl
       - run:
           name: Deploy Code
-          command: chmod +x ~/config_scripts/ci-deploy.sh && ./config_scripts/ci-deploy.sh
+          command: chmod +x config_scripts/ci-deploy.sh && config_scripts/ci-deploy.sh
 workflows:
   version: 2
   build-master:
