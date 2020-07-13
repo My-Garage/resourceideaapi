@@ -5,7 +5,7 @@
 # Define image to build from
 FROM python:3.6-slim
 
-# Docker set up maintainer 
+# Docker set up maintainer
 LABEL AUTHOR="scott/seggie <dev@resource.org>"
 LABEL app="resource-idea-api"
 
@@ -21,16 +21,16 @@ WORKDIR /code
 COPY requirements.txt requirements.dev.txt /code/
 
 # Install requirements
-RUN pip3 install -r requirements.txt 
+RUN pip3 install -r requirements.txt
 
-# Install dev requirements 
+# Install dev requirements
 RUN pip3 install -r requirements.dev.txt
 
 # Copy all project files to the working directory
 COPY . /code/
 
-# source secret key
-RUN /bin/bash -c "source .env"
+# # source secret key
+# RUN /bin/bash -c "source .env"
 
 # export secret key
 ENV SECRET_KEY=SENwSzdDakJhNDJteTQK
