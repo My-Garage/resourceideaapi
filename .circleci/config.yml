@@ -50,7 +50,7 @@ jobs:
           command: chmod +x config_scripts/ci-deploy.sh && config_scripts/ci-deploy.sh
 workflows:
   version: 2
-  build-master:
+  build-deploy:
     jobs:
       - build
       - deploy:
