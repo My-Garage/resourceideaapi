@@ -10,9 +10,9 @@ jobs:
       - run:
           name: install dependencies
           command: sudo pip3 install -r requirements.txt && sudo pip3 install -r requirements.dev.txt
-      - run:
-          name: Migrate and seed
-          command: python3 manage.py makemigrations && python3 migrate
+      # - run:
+      #     name: Migrate and seed
+      #     command: python3 manage.py makemigrations && python3 migrate
       - run:
           name: run tests.
           command: pytest 
