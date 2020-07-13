@@ -3,12 +3,33 @@ jobs:
   build:
     docker:
       - image: circleci/buildpack-deps:stretch
+    working_directory: ~/app
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+        name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip3 install -r requirements.txt && pip3 install -r requirements.dev.txt
+      - run:
+          name: Migrate and seed
+          command: python3 manage.py makemigrations && python3 migrate
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            nosetests tests 
+          timeout: 5000
+  deploy:
+    docker:
+      - image: circleci/buildpack-deps:stretch
     environment:
       IMAGE_NAME: 1994scott/resourceapi
     working_directory: ~/app
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Build Docker image
           command: |
@@ -36,7 +57,8 @@ workflows:
   version: 2
   build-master:
     jobs:
-      - build:
+      - build
+      - deploy:
           filters:
             branches:
               only: scott/deployment
