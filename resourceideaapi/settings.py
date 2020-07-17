@@ -50,8 +50,6 @@ INSTALLED_APPS = [
     'client',
     'lineofservice',
     'engagement',
-    'job',
-    'task',
     'task_assignment',
     'department',
     'job_position',

@@ -1,16 +1,12 @@
 from rest_framework import serializers
-from task.api.serializers import TaskSerializer
 from task_assignment.models import TaskAssignment
 
 
 class TaskAssignmentSerializer(serializers.ModelSerializer):
     """Serializer for the TaskAssignment model."""
 
-    task = TaskSerializer(read_only=True)
-    task_id = serializers.UUIDField(write_only=True)
     employee_id = serializers.UUIDField(write_only=True)
 
     class Meta:
         model = TaskAssignment
-        fields = ('id', 'start_date_time', 'completion_date_time', 'task',
-                  'task_id', 'employee_id')
+        fields = ('id', 'start_date_time', 'completion_date_time', 'employee_id')
