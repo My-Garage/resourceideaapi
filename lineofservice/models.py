@@ -8,10 +8,8 @@ from organization.models import Organization
 class LineOfService(BaseModel):
     """Line of service model"""
 
-    name = models.CharField(max_length=100)
-    organization = models.ForeignKey(Organization,
-                                     null=True,
-                                     on_delete=models.SET_NULL)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL)
     src_los_id = models.UUIDField(null=True, blank=True)
 
     class Meta:

@@ -21,17 +21,9 @@ class Engagement(BaseModel):
     planned_end_date = models.DateField(null=True, blank=True)
     actual_end_date = models.DateField(null=True, blank=True)
     color = models.CharField(max_length=7, null=True, blank=True)
-    status = models.CharField(
-        max_length=20,
-        choices=[(status.value, status.value) for status in ProgressStatus])
-    manager = models.ForeignKey(Employee,
-                                null=True,
-                                on_delete=models.SET_NULL,
-                                blank=True)
-    partner = models.ForeignKey(Employee,
-                                null=True,
-                                on_delete=models.SET_NULL,
-                                related_name='partner_engagements',
+    status = models.CharField(max_length=20, choices=[(status.value, status.value) for status in ProgressStatus])
+    manager = models.ForeignKey(Employee, null=True, on_delete=models.SET_NULL, blank=True)
+    partner = models.ForeignKey(Employee, null=True, on_delete=models.SET_NULL, related_name='partner_engagements',
                                 blank=True)
     client = models.ForeignKey(Client,
                                null=True,

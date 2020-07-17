@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils import timezone
 
 from common.models import BaseModel
@@ -13,14 +14,10 @@ class JobPosition(BaseModel):
     Holds information about the job positions.
     """
 
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=128, null=True, blank=True)
     hierarchy_order = models.IntegerField()
-    department = models.ForeignKey(Department,
-                                   null=True,
-                                   on_delete=models.SET_NULL)
-    organization = models.ForeignKey(Organization,
-                                     null=True,
-                                     on_delete=models.SET_NULL)
+    department = models.ForeignKey(Department, null=True, on_delete=models.SET_NULL)
+    organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL)
     src_job_position_id = models.IntegerField(null=True, blank=True)
 
     class Meta:
