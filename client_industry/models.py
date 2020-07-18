@@ -10,12 +10,8 @@ class ClientIndustry(BaseModel):
     """Client industry model"""
 
     name = models.CharField(max_length=100, null=False)
-    name_slug = models.CharField(max_length=100,
-                                 editable=False,
-                                 null=False)
-    organization = models.ForeignKey(Organization,
-                                     null=True,
-                                     on_delete=models.SET_NULL)
+    name_slug = models.CharField(max_length=150, editable=False, null=False)
+    organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         db_table = 'client_industry'
