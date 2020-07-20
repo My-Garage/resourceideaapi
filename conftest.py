@@ -1,4 +1,5 @@
 pytest_plugins = [
+    'common.fixtures.client_industry',
     'common.fixtures.core',
     'common.fixtures.department',
     'common.fixtures.employee',
