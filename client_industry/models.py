@@ -1,6 +1,7 @@
 import re
 
 from django.db import models
+from django.utils import timezone
 
 from common.models import BaseModel
 from organization.models import Organization
@@ -19,8 +20,14 @@ class ClientIndustry(BaseModel):
         unique_together = ['name', 'name_slug', 'organization']
 
     def save(self, *args, **kwargs):
-        self.name_slug = re.sub(r'\W', '-', self.name.lower())
+        if self.is_deleted is not True:
+            self.name_slug = re.sub(r'\W', '-', self.name.lower())
         super(ClientIndustry, self).save(*args, **kwargs)
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save()
 
     def __str__(self):
         return self.name

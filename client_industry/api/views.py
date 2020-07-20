@@ -9,8 +9,12 @@ class ClientIndustryViewSet(mixins.UpdateModelMixin,
                             mixins.ListModelMixin,
                             mixins.RetrieveModelMixin,
                             mixins.CreateModelMixin,
+                            mixins.DestroyModelMixin,
                             viewsets.GenericViewSet):
     """Client industry viewsets"""
 
-    queryset = ClientIndustry.objects.all()
+    queryset = ClientIndustry.objects.none()
     serializer_class = ClientIndustrySerializer
+
+    def get_queryset(self):
+        return ClientIndustry.objects.filter(organization_id=self.request.user.employee.organization_id)
