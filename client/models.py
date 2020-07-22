@@ -11,18 +11,10 @@ class Client(BaseModel):
     """Client model"""
 
     name = models.CharField(max_length=256, null=False)
-    name_slug = models.CharField(max_length=256,
-                                 editable=False,
-                                 null=False,
-                                 blank=False,
-                                 unique=True)
+    name_slug = models.CharField(max_length=256, editable=False, null=False, blank=False, unique=True)
     address = models.CharField(max_length=256)
-    client_industry = models.ForeignKey(ClientIndustry,
-                                        null=True,
-                                        on_delete=models.SET_NULL)
-    organization = models.ForeignKey(Organization,
-                                     null=True,
-                                     on_delete=models.SET_NULL)
+    client_industry = models.ForeignKey(ClientIndustry, null=True, on_delete=models.SET_NULL)
+    organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL)
     src_client_id = models.CharField(max_length=40, null=True, blank=True)
 
     class Meta:

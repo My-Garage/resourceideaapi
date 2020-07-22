@@ -1,7 +1,7 @@
 from django.contrib.auth.models import Group, Permission
 
-from common.permission_lists import administrator_permissions
-from common.permission_lists import resource_permissions
+from common.utils.permission_lists import administrator_permissions
+from common.utils.permission_lists import resource_permissions
 
 
 def create_resource_groups():

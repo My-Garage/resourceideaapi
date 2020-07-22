@@ -1,8 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from common.utils import create_administrator_groups
-from common.utils import create_resource_groups
+from common.utils.user_groups import create_administrator_groups
+from common.utils.user_groups import create_resource_groups
 
 
 @api_view(['GET'])
