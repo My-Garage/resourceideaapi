@@ -45,7 +45,7 @@ jobs:
           command: sudo pip3 install -r requirements.txt && sudo pip3 install -r requirements.dev.txt
 
       - run:
-          name: Waiting for Postgres to be ready
+          name: Waiting for Postgres to be ready.
           command: |
             for i in `seq 1 10`;
             do
@@ -59,7 +59,6 @@ jobs:
           name: pull image and create db.
           command: |
             export SECRET_KEY=SENwSzdDakJhNDJteTQK 
-            ls
             python3 manage.py makemigrations
             python3 manage.py migrate
 
@@ -77,7 +76,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build Docker image
+          name: Build Docker image.
           command: |
             docker build -t $IMAGE_NAME:latest .
       - run:
@@ -91,12 +90,12 @@ jobs:
           command: |
             sudo apt-get update && sudo apt-get -y install gettext-base
       - run:
-          name: Install kubectl
+          name: Install kubectl.
           command: |
             curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
             chmod u+x ./kubectl
       - run:
-          name: Deploy Code
+          name: Deploy Code.
           command: chmod +x config_scripts/ci-deploy.sh && config_scripts/ci-deploy.sh
 workflows:
   version: 2
