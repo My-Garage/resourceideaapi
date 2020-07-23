@@ -1,21 +1,70 @@
 version: 2.1
+machine:
+  environment:
+    # Add the Postgres 9.6 binaries to the path.
+    PATH: /usr/lib/postgresql/9.6/bin/:$PATH
+
+  pre:
+    - docker pull postgres:[tag]
+    - mkdir -p $HOME/docker/volumes/postgres
+    - docker run --rm --name pg-docker -e POSTGRES_PASSWORD=postgres -d -p 54320:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
+    - docker exec -it pg-docker psql -U postgres -c "create database resourceidea"
+    - export $(cat .env.local)
+    # Start Postgres 9.6.
+    - sudo service postgresql start 9.6
+
+    # Create a new test database.
+    - sudo -u postgres psql -p 5432 -c "create database resourceidea;"
+    
 jobs:
   build:
     docker:
       - image: circleci/python:3.6.4
+        environment:
+          PGUSER: root
+          SECRET_KEY: SENwSzdDakJhNDJteTQK
+          DB_HOST: localhost
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_PORT: 5432
+
+      - image: circleci/postgres:9.6.2
+        environment:
+          POSTGRES_DB: resourceidea
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+
     working_directory: ~/app
+
     steps:
       - checkout
       - setup_remote_docker
+
       - run:
           name: install dependencies.
           command: sudo pip3 install -r requirements.txt && sudo pip3 install -r requirements.dev.txt
-      # - run:
-      #     name: Migrate and seed
-      #     command: python3 manage.py makemigrations && python3 migrate
+
+      - run:
+          name: Waiting for Postgres to be ready
+          command: |
+            for i in `seq 1 10`;
+            do
+              nc -z localhost 5432 && echo Success && exit 0
+              echo -n .
+              sleep 1
+            done
+            echo Failed waiting for Postgres && exit 1
+
+      - run:
+          name: pull image and create db.
+          command: |
+            export SECRET_KEY=SENwSzdDakJhNDJteTQK 
+            python3 manage.py makemigrations
+            python3 manage.py migrate
+
       - run:
           name: run tests.
-          command: pytest 
+          command: export SECRET_KEY=SENwSzdDakJhNDJteTQK && pytest 
           timeout: 5000
   deploy:
     docker:
@@ -35,7 +84,6 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker tag $IMAGE_NAME:latest $IMAGE_NAME:$CIRCLE_SHA1
-            docker push $IMAGE_NAME:latest
             docker push $IMAGE_NAME:$CIRCLE_SHA1
       - run:
           name: Install envsubst
