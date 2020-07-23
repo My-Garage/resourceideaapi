@@ -59,6 +59,7 @@ jobs:
           name: pull image and create db.
           command: |
             export SECRET_KEY=SENwSzdDakJhNDJteTQK 
+            python3 -m pip install django
             python3 manage.py makemigrations
             python3 manage.py migrate
 
