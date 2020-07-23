@@ -1,9 +1,10 @@
 import re
 
 from rest_framework import serializers
-from rest_framework.exceptions import PermissionDenied
 
 from client_industry.models import ClientIndustry
+from common.validators.organization_validators import is_organization_user
+from common.validators.organization_validators import get_request_organization_id
 from organization.api.serializers import OrganizationSerializer
 
 
@@ -18,13 +19,9 @@ class ClientIndustrySerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'name_slug', 'organization', 'organization_id')
 
     def create(self, validated_data):
-        organization_id = validated_data.get('organization_id', None)
-        if organization_id is None:
-            raise serializers.ValidationError('organization_id is required')
-
+        organization_id = get_request_organization_id(request_data=validated_data)
         user_organization_id = self.context['request'].user.employee.organization_id
-        if organization_id != user_organization_id:
-            raise PermissionDenied('User does not have the permission to perform action')
+        is_organization_user(organization_id, user_organization_id)  # TODO (JGS): Log user validation check
 
         client_industry_name = validated_data.get('name', None)
         if client_industry_name is None:
