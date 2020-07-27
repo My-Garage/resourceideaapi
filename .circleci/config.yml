@@ -66,12 +66,9 @@ jobs:
 
       - run:
           name: run tests.
-          command: |
-            export SECRET_KEY=SENwSzdDakJhNDJteTQK 
-            export $(cat .env.local)
-            export | grep DB
-            pytest 
+          command: export SECRET_KEY=SENwSzdDakJhNDJteTQK && pytest 
           timeout: 5000
+          
   deploy:
     docker:
       - image: circleci/python:3.6.4
@@ -113,4 +110,4 @@ workflows:
             - build
           filters:
             branches:
-              only: scott/deployment
+              only: scott/api-deploy
