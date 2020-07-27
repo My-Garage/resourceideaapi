@@ -63,7 +63,7 @@ jobs:
 
       - run:
           name: run tests.
-          command: export $(cat .env.local) && pytest 
+          command: export $(cat .env.local) && source .env.local && pytest 
           timeout: 5000
   deploy:
     docker:
