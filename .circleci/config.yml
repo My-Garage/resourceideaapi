@@ -25,13 +25,16 @@ jobs:
           DB_HOST: localhost
           DB_USER: postgres
           DB_PASSWORD: postgres
-          DB_PORT: 5432
+          DB_NAME: resourceidea
+          DB_PORT: 54320
 
       - image: circleci/postgres:9.6.2
         environment:
-          POSTGRES_DB: resourceidea
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          DB_HOST: localhost
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_NAME: resourceidea
+          DB_PORT: 54320
 
     working_directory: ~/app
 
