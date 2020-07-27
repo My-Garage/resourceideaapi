@@ -63,7 +63,7 @@ jobs:
 
       - run:
           name: run tests.
-          command: export SECRET_KEY=SENwSzdDakJhNDJteTQK && pytest 
+          command: export $(cat .env.local) && pytest 
           timeout: 5000
   deploy:
     docker:
