@@ -36,10 +36,10 @@ urlpatterns = [
     path(f'{BASE_API_URL}', include('job_position.api.urls')),
 
     path('', include('home.urls')),
-    path(f'api/token/',
+    path('api/token/',
          jwt_views.TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
-    path(f'api/token/refresh/',
+    path('api/token/refresh/',
          jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'),
 ]
