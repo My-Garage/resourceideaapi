@@ -25,18 +25,10 @@ class Engagement(BaseModel):
     manager = models.ForeignKey(Employee, null=True, on_delete=models.SET_NULL, blank=True)
     partner = models.ForeignKey(Employee, null=True, on_delete=models.SET_NULL, related_name='partner_engagements',
                                 blank=True)
-    client = models.ForeignKey(Client,
-                               null=True,
-                               on_delete=models.SET_NULL,
-                               related_name='manager_engagements',
+    client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL, related_name='manager_engagements',
                                blank=True)
-    line_of_service = models.ForeignKey(LineOfService,
-                                        null=True,
-                                        on_delete=models.SET_NULL,
-                                        blank=True)
-    organization = models.ForeignKey(Organization,
-                                     null=True,
-                                     on_delete=models.SET_NULL)
+    line_of_service = models.ForeignKey(LineOfService, null=True, on_delete=models.SET_NULL, blank=True)
+    organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL)
 
     src_project_id = models.CharField(max_length=40, null=True, blank=True)
 
