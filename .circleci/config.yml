@@ -68,7 +68,6 @@ jobs:
           command: |
             export SECRET_KEY=SENwSzdDakJhNDJteTQK 
             export $(cat .env.local)
-            source .env.local
             export | grep DB
             pytest 
           timeout: 5000
