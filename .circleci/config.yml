@@ -12,7 +12,6 @@ machine:
     - export $(cat .env.local)
     # Start Postgres 9.6.
     - sudo service postgresql start 9.6
-
     # Create a new test database.
     - sudo -u postgres psql -p 5432 -c "create database resourceidea;"
     
