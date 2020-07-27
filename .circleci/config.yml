@@ -68,7 +68,7 @@ jobs:
           name: run tests.
           command: export SECRET_KEY=SENwSzdDakJhNDJteTQK && pytest 
           timeout: 5000
-          
+
   deploy:
     docker:
       - image: circleci/python:3.6.4
@@ -79,7 +79,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build Docker image
+          name: Build Docker image.
           command: |
             docker build -t $IMAGE_NAME:latest .
       - run:
