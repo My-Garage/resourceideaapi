@@ -23,6 +23,7 @@ jobs:
         environment:
           PGUSER: root
           SECRET_KEY: SENwSzdDakJhNDJteTQK
+          DB_NAME: resourceidea
           DB_HOST: localhost
           DB_USER: postgres
           DB_PASSWORD: postgres
