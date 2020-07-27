@@ -26,7 +26,7 @@ jobs:
           DB_HOST: localhost
           DB_USER: postgres
           DB_PASSWORD: postgres
-          DB_PORT: 54320
+          DB_PORT: 5432
 
       - image: circleci/postgres:9.6.2
         environment:
@@ -67,6 +67,7 @@ jobs:
           name: run tests.
           command: |
             export SECRET_KEY=SENwSzdDakJhNDJteTQK 
+            export $(cat .env.local)
             source .env.local
             export | grep DB
             pytest 
