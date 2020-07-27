@@ -12,3 +12,10 @@ def index(request):
     response = {'message': 'Initial setup complete.'}
 
     return Response(response)
+
+
+@api_view(['GET'])
+def sentry_debug(request):
+    division_by_zero = 1 / 0
+
+    return Response({'message': f'Testing sentry logging: {division_by_zero}'})
