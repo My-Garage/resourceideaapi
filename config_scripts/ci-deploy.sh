@@ -16,6 +16,7 @@ mv ./k8s/deployment.yml.out ./k8s/deployment.yml
 echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
 
 ./kubectl \
+  --insecure-skip-tls-verify
   --kubeconfig=/dev/null \
   --token=$KUBERNETES_TOKEN \
   --server=$KUBERNETES_SERVER \
