@@ -12,6 +12,7 @@ machine:
     - export $(cat .env.local)
     # Start Postgres 9.6.
     - sudo service postgresql start 9.6
+
     # Create a new test database.
     - sudo -u postgres psql -p 5432 -c "create database resourceidea;"
     
@@ -25,7 +26,6 @@ jobs:
           DB_HOST: localhost
           DB_USER: postgres
           DB_PASSWORD: postgres
-          DB_NAME: resourceidea
           DB_PORT: 5432
 
       - image: circleci/postgres:9.6.2
@@ -33,7 +33,6 @@ jobs:
           DB_HOST: localhost
           DB_USER: postgres
           DB_PASSWORD: postgres
-          DB_NAME: resourceidea
           DB_PORT: 5432
 
     working_directory: ~/app
@@ -47,7 +46,7 @@ jobs:
           command: sudo pip3 install -r requirements.txt && sudo pip3 install -r requirements.dev.txt
 
       - run:
-          name: Waiting for Postgres to be ready.
+          name: Waiting for Postgres to be ready
           command: |
             for i in `seq 1 10`;
             do
@@ -66,7 +65,7 @@ jobs:
 
       - run:
           name: run tests.
-          command: export $(cat .env.local) && source .env.local && pytest 
+          command: export SECRET_KEY=SENwSzdDakJhNDJteTQK && pytest 
           timeout: 5000
   deploy:
     docker:
@@ -78,7 +77,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build Docker image.
+          name: Build Docker image
           command: |
             docker build -t $IMAGE_NAME:latest .
       - run:
@@ -97,7 +96,7 @@ jobs:
             curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
             chmod u+x ./kubectl
       - run:
-          name: Deploy Code.
+          name: Deploy Code
           command: chmod +x config_scripts/ci-deploy.sh && config_scripts/ci-deploy.sh
 workflows:
   version: 2
