@@ -24,4 +24,4 @@ TOKEN=$(./kubectl get secret -n resourceideaapi $(./kubectl get secret -n resour
 #   --server=$KUBERNETES_SERVER \
 #   --certificate-authority=cert.crt \
 #   --token=$KUBERNETES_TOKEN \
-#   apply -f ./k8s/ -n resourceideaapi
+#   apply -f ./k8s/deployment.yml -n resourceideaapi
