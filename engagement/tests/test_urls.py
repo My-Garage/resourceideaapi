@@ -35,29 +35,29 @@ class TestEngagementEndpoints:
         assert response.status_code == 201
         assert response_json['title'] == test_data['title']
 
-    # def test_retrieve_engagement(self, api_client, engagement: Engagement) -> None:
-    #     url = reverse('engagement-detail', args=[engagement.id])
-    #     response = api_client.get(url)
+    def test_retrieve_engagement(self, api_client, engagement: Engagement) -> None:
+        url = reverse('engagement-detail', args=[engagement.id])
+        response = api_client.get(url)
 
-    #     response_json = response.json()
+        response_json = response.json()
 
-    #     assert response.status_code == 200
-    #     assert response_json['name_slug'] == client.name_slug
+        assert response.status_code == 200
+        assert response_json['title'] == engagement.title
 
-    # def test_update_engagement(self, api_client, engagement: Engagement) -> None:
-    #     url = reverse('engagement-detail', args=[engagement.id])
-    #     test_data = EngagementSerializer(engagement).data
-    #     test_data['name'] = 'Updated name'
-    #     response = api_client.put(url, test_data, format='json')
+    def test_update_engagement(self, api_client, engagement: Engagement) -> None:
+        url = reverse('engagement-detail', args=[engagement.id])
+        test_data = EngagementSerializer(engagement).data
+        test_data['title'] = 'Updated title'
+        response = api_client.put(url, test_data, format='json')
 
-    #     response_json = response.json()
-    #     engagement.refresh_from_db()
+        response_json = response.json()
+        engagement.refresh_from_db()
 
-    #     assert response.status_code == 200
-    #     assert response_json['name_slug'] == engagement.name_slug
+        assert response.status_code == 200
+        assert response_json['title'] == engagement.title
 
-    # def test_delete_engagement(self, api_client, engagement: Engagement) -> None:
-    #     url = reverse('engagement-detail', args=[engagement.id])
-    #     response = api_client.delete(url)
+    def test_delete_engagement(self, api_client, engagement: Engagement) -> None:
+        url = reverse('engagement-detail', args=[engagement.id])
+        response = api_client.delete(url)
 
-    #     assert response.status_code == 204
+        assert response.status_code == 204

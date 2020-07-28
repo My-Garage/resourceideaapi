@@ -12,16 +12,16 @@ from organization.api.serializers import OrganizationSerializer
 class EngagementSerializer(serializers.ModelSerializer):
     """Serializes engagement data"""
 
-    organization_id = serializers.UUIDField(write_only=True)
+    organization_id = serializers.UUIDField()
     organization = OrganizationSerializer(read_only=True)
     line_of_service = LineOfServiceSerializer(read_only=True)
-    line_of_service_id = serializers.UUIDField(write_only=True, required=False)
-    client_id = serializers.UUIDField(write_only=True, required=False)
+    line_of_service_id = serializers.UUIDField(required=False)
+    client_id = serializers.UUIDField(required=False)
     client = ClientSerializer(read_only=True)
     manager = serializers.StringRelatedField(read_only=True)
-    manager_id = serializers.UUIDField(write_only=True, required=False)
+    manager_id = serializers.UUIDField(required=False)
     partner = serializers.StringRelatedField(read_only=True)
-    partner_id = serializers.UUIDField(write_only=True, required=False)
+    partner_id = serializers.UUIDField(required=False)
 
     class Meta:
         model = Engagement
