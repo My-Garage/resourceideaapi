@@ -14,11 +14,12 @@ envsubst <./k8s/deployment.yml >./k8s/deployment.yml.out
 mv ./k8s/deployment.yml.out ./k8s/deployment.yml
 
 echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
+./kubectl --insecure-skip-tls-verify --kubeconfig="/dev/null" --server=$KUBERNETES_SERVER --token=$KUBERNETES_TOKEN
 
-./kubectl \
-  --kubeconfig=/dev/null \
-  --insecure-skip-tls-verify 
-  --server=$KUBERNETES_SERVER \
-  --certificate-authority=cert.crt \
-  --token=$KUBERNETES_TOKEN \
-  apply -f ./k8s/ -n resourceideaapi
+# ./kubectl \
+#   --kubeconfig=/dev/null \
+#   --insecure-skip-tls-verify 
+#   --server=$KUBERNETES_SERVER \
+#   --certificate-authority=cert.crt \
+#   --token=$KUBERNETES_TOKEN \
+#   apply -f ./k8s/ -n resourceideaapi
