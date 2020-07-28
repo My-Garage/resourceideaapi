@@ -14,14 +14,10 @@ envsubst <./k8s/deployment.yml >./k8s/deployment.yml.out
 mv ./k8s/deployment.yml.out ./k8s/deployment.yml
 
 echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
-TOKEN=$(./kubectl get secret -n resourceideaapi $(./kubectl get secret -n resourceideaapi | grep cicd-token | awk '{print $1}') -o jsonpath='{.data.token}' | base64 --decode)
-./kubectl --insecure-skip-tls-verify --kubeconfig="/dev/null" --server=$KUBERNETES_SERVER --token=$TOKEN get pods -n resourceideaapi
-# ./kubectl --kubeconfig="/dev/null" --server=$KUBERNETES_SERVER --certificate-authority=cert.crt --token=$KUBERNETES_TOKEN get pods -n resourceideaapi
 
-# ./kubectl \
-#   --kubeconfig=/dev/null \
-#   --insecure-skip-tls-verify 
-#   --server=$KUBERNETES_SERVER \
-#   --certificate-authority=cert.crt \
-#   --token=$KUBERNETES_TOKEN \
-#   apply -f ./k8s/deployment.yml -n resourceideaapi
+./kubectl \
+  --kubeconfig=/dev/null \
+  --server=$KUBERNETES_SERVER \
+  --certificate-authority=cert.crt \
+  --token=$KUBERNETES_TOKEN \
+  apply -f ./k8s/deployment.yml -n resourceideaapi
