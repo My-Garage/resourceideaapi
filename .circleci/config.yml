@@ -98,9 +98,9 @@ workflows:
   build-deploy:
     jobs:
       - build
-      # - deploy:
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only: scott/api-deploy
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: scott/api-deploy
