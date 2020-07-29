@@ -3,7 +3,7 @@ from rest_framework.reverse import reverse
 
 
 class TestJobPositionEndpoints:
-    pytestmark = [pytest.mark.integrationtest, pytest.mark.django_db]
+    pytestmark = [pytest.mark.system, pytest.mark.django_db]
 
     def test_add_jobposition(self, api_client, organization, department):
         url = reverse('jobposition-list')

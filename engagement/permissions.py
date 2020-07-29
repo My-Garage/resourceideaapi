@@ -1,7 +1,6 @@
 """
 Permissions for the engagement model.
 """
-from django.contrib.auth.models import Permission
 from rest_framework import permissions
 
 

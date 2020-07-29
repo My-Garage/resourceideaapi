@@ -1,5 +1,3 @@
-import json
-
 from uuid import UUID
 from typing import NewType
 
