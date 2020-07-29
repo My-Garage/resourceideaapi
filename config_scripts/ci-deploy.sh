@@ -2,10 +2,10 @@
 # exit script when any command ran here returns with non-zero exit code
 set -e
 
-# COMMIT_SHA1=$CIRCLE_SHA1
+COMMIT_SHA1=$CIRCLE_SHA1
 
 # We must export it so it's available for envsubst.
-# export COMMIT_SHA1=$COMMIT_SHA1
+export COMMIT_SHA1=$COMMIT_SHA1
 
 # since the only way for envsubst to work on files is using input/output redirection,
 #  it's not possible to do in-place substitution, so we need to save the output to another file
@@ -15,4 +15,4 @@ mv ./k8s/deployment.yml.out ./k8s/deployment.yml
 
 echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
 
-./kubectl --insecure-skip-tls-verify --kubeconfig="/dev/null" --server=$KUBERNETES_SERVER --token=$TOKEN set image deployment/resourceideaapi resourceideaapi=1994scott/resourceapi:latest -n resourceideaapi
+./kubectl --insecure-skip-tls-verify --kubeconfig="/dev/null" --server=$KUBERNETES_SERVER --token=$TOKEN set image deployment/resourceideaapi resourceideaapi=1994scott/resourceapi:$COMMIT_SHA1 -n resourceideaapi
