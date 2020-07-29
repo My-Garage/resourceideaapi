@@ -15,13 +15,13 @@
 -----
 #### TOKEN=$(kubectl get secret -n resourceideaapi $(kubectl get secret -n resourceideaapi | grep cicd-token | awk '{print $1}') -o jsonpath='{.data.token}' | base64 --decode)
 ----- 
-#### kubectl --insecure-skip-tls-verify --kubeconfig="/dev/null" --server=https://1388d674-433c-4da7-8ca0-8fd9c3a54886.k8s.ondigitalocean.com --token=$TOKEN get pods -n resourceideaapi
+#### kubectl --insecure-skip-tls-verify --kubeconfig="/dev/null" --server=ask-scott --token=$TOKEN get pods -n resourceideaapi
 ----- should return error
 
 #### kubectl apply -f k8s/role.yml
 #### kubectl apply -f k8s/role-binding.yml
 
-##### kubectl --insecure-skip-tls-verify --kubeconfig="/dev/null" --server=https://1388d674-433c-4da7-8ca0-8fd9c3a54886.k8s.ondigitalocean.com --token=$TOKEN get pods -n resourceideaapi
+##### kubectl --insecure-skip-tls-verify --kubeconfig="/dev/null" --server=ask-scott --token=$TOKEN get pods -n resourceideaapi
 ---- should now work
 
 ## tag and push image to dockerhub

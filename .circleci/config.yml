@@ -7,8 +7,8 @@ machine:
   pre:
     - docker pull postgres:[tag]
     - mkdir -p $HOME/docker/volumes/postgres
-    - docker run --rm --name pg-docker -e POSTGRES_PASSWORD=postgres -d -p 54320:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
-    - docker exec -it pg-docker psql -U postgres -c "create database resourceidea"
+    - docker run --rm --name pg-docker -e POSTGRES_PASSWORD=$DB_PASSWORD -d -p 54320:$DB_PORT -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
+    - docker exec -it pg-docker psql -U $DB_USER -c "create database resourceidea"
     - export $(cat .env.local)
     # Start Postgres 9.6.
     - sudo service postgresql start 9.6
@@ -22,19 +22,19 @@ jobs:
       - image: circleci/python:3.6.4
         environment:
           PGUSER: root
-          SECRET_KEY: SENwSzdDakJhNDJteTQK
-          DB_NAME: postgres
-          DB_HOST: localhost
-          DB_USER: postgres
-          DB_PASSWORD: postgres
-          DB_PORT: 5432
+          SECRET_KEY: $SECRET_KEY
+          DB_NAME: $DB_NAME
+          DB_HOST: $DB_HOST
+          DB_USER: $DB_USER
+          DB_PASSWORD: $DB_PASSWORD
+          DB_PORT: $DB_PORT
 
       - image: circleci/postgres:9.6.2
         environment:
-          DB_HOST: localhost
-          DB_USER: postgres
-          DB_PASSWORD: postgres
-          DB_PORT: 5432
+          DB_HOST: $DB_HOST
+          DB_USER: $DB_USER
+          DB_PASSWORD: $DB_PASSWORD
+          DB_PORT: $DB_PORT
 
     working_directory: ~/app
 
@@ -60,20 +60,20 @@ jobs:
       - run:
           name: pull image and create db.
           command: |
-            export SECRET_KEY=SENwSzdDakJhNDJteTQK 
+            export SECRET_KEY=$SECRET_KEY 
             python3 manage.py makemigrations
             python3 manage.py migrate
 
       - run:
           name: run tests.
-          command: export SECRET_KEY=SENwSzdDakJhNDJteTQK && pytest 
+          command: export SECRET_KEY=$SECRET_KEY && pytest 
           timeout: 5000
 
   deploy:
     docker:
       - image: circleci/python:3.6.4
     environment:
-      IMAGE_NAME: 1994scott/resourceapi
+      IMAGE_NAME: $IMAGE_NAME
     working_directory: ~/app
     steps:
       - checkout
