@@ -4,7 +4,7 @@ set -e
 
 COMMIT_SHA1=$CIRCLE_SHA1
 
-# We must export it so it's available for envsubst
+# We must export it so it's available for envsubst.
 export COMMIT_SHA1=$COMMIT_SHA1
 
 # since the only way for envsubst to work on files is using input/output redirection,
@@ -15,5 +15,5 @@ mv ./k8s/deployment.yml.out ./k8s/deployment.yml
 
 echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
 
-# ./kubectl --kubeconfig=/dev/null --server=$KUBERNETES_SERVER --certificate-authority=cert.crt --token=$KUBERNETES_TOKEN get pods -n resourceideaapi
+# ./kubectl --kubeconfig=/dev/null --server=$KUBERNETES_SERVER --certificate-authority=cert.crt --token=$KUBERNETES_TOKEN get pods -n resourceideaapi.
 ./kubectl --insecure-skip-tls-verify --kubeconfig="/dev/null" --server=$KUBERNETES_SERVER --token=$TOKEN get pods -n resourceideaapi
