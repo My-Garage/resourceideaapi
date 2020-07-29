@@ -7,7 +7,7 @@ machine:
   pre:
     - docker pull postgres:[tag]
     - mkdir -p $HOME/docker/volumes/postgres
-    - docker run --rm --name pg-docker -e POSTGRES_PASSWORD=$DB_PASSWORD -d -p 54320:$DB_PORT -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
+    - docker run --rm --name pg-docker -e POSTGRES_PASSWORD=$DB_PASSWORD -d -p 54320:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
     - docker exec -it pg-docker psql -U $DB_USER -c "create database resourceidea"
     - export $(cat .env.local)
     # Start Postgres 9.6.
@@ -27,14 +27,14 @@ jobs:
           DB_HOST: $DB_HOST
           DB_USER: $DB_USER
           DB_PASSWORD: $DB_PASSWORD
-          DB_PORT: $DB_PORT
+          DB_PORT: 5432
 
       - image: circleci/postgres:9.6.2
         environment:
           DB_HOST: $DB_HOST
           DB_USER: $DB_USER
           DB_PASSWORD: $DB_PASSWORD
-          DB_PORT: $DB_PORT
+          DB_PORT: 5432
 
     working_directory: ~/app
 
