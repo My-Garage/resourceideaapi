@@ -8,7 +8,7 @@ from engagement.models import Engagement
 
 
 class TestEngagementEndpoints:
-    pytestmark = [pytest.mark.integrationtest, pytest.mark.django_db]
+    pytestmark = [pytest.mark.system, pytest.mark.django_db]
 
     def test_list_engagements(self, api_client):
         url = reverse('engagement-list')

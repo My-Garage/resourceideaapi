@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict
 
 from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied

@@ -9,7 +9,7 @@ from organization.models import Organization
 
 
 class TestEmployeeEndpoints:
-    pytestmark = [pytest.mark.integrationtest, pytest.mark.django_db, ]
+    pytestmark = [pytest.mark.system, pytest.mark.django_db, ]
 
     def test_list_employees(self, api_client):
         url = reverse('employee-list')

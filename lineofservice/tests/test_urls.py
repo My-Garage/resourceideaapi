@@ -3,7 +3,7 @@ from rest_framework.reverse import reverse
 
 
 class TestLineOfServiceEndpoints:
-    pytestmark = [pytest.mark.integrationtest, pytest.mark.django_db]
+    pytestmark = [pytest.mark.system, pytest.mark.django_db]
 
     def test_add_lineofservice(self, api_client, organization):
         url = reverse('linesofservice-list')

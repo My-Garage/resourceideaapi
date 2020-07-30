@@ -6,7 +6,7 @@ from client.models import Client
 
 
 class TestClientEndpoints:
-    pytestmark = [pytest.mark.integrationtest, pytest.mark.django_db]
+    pytestmark = [pytest.mark.system, pytest.mark.django_db]
 
     def test_list_clients(self, api_client):
         url = reverse('client-list')

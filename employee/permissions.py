@@ -17,9 +17,9 @@ class EmployeePermissions(permissions.BasePermission):
 
 class RecordOwnerOrAdministrator(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
-        if obj.user == request.user \
-                or (request.user.has_perm('employee.view_employee') and
-                    request.user.has_perm('employee.change_employee')):
+        can_view_employee = request.user.has_perm('employee.view_employee')
+        can_change_employee = request.user.has_perm('employee.change_employee')
+        if obj.user == request.user or (can_view_employee and can_change_employee):
             return True
 
         return False
