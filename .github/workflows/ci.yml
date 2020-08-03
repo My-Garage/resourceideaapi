@@ -9,6 +9,8 @@ on:
   push:
     branches:
       - '**'
+      - '!develop'
+      - '!prod'
 
 env:
   POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
