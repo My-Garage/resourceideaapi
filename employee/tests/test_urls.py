@@ -25,7 +25,7 @@ class TestEmployeeEndpoints:
         resp = api_client.post(url, {'file_number': '51251',
                                      'organization_id': organization.id,
                                      'phone_number': '0782147101',
-                                     'status': 'active',
+                                     'status': 'ACTIVE',
                                      'first_name': 'Test',
                                      'last_name': 'User',
                                      'username': 'testuser',

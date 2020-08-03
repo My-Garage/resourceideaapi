@@ -3,10 +3,10 @@ import enum
 
 class Status(enum.Enum):
     """Status enumeration."""
-    ACTIVE = 'active'
-    DISABLED = 'disabled'
-    ARCHIVED = 'archived'
-    DELETED = 'deleted'
+    ACTIVE = 'ACTIVE'
+    DISABLED = 'DISABLED'
+    ARCHIVED = 'ARCHIVED'
+    DELETED = 'DELETED'
 
 
 class ProgressStatus(enum.Enum):
@@ -14,8 +14,8 @@ class ProgressStatus(enum.Enum):
     stages of the progress made on an engagement,
     job or task."""
 
-    NOT_STARTED = 'not started'
-    RUNNING = 'running'
-    IN_REVIEW = 'in review'
-    REVIEWED = 'reviewed'
-    CLOSED = 'closed'
+    NOT_STARTED = 'NOT STARTED'
+    RUNNING = 'RUNNING'
+    IN_REVIEW = 'IN REVIEW'
+    REVIEWED = 'REVIEWED'
+    CLOSED = 'CLOSED'

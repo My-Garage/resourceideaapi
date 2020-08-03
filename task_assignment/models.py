@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from common.enums import ProgressStatus
 from common.models import BaseModel
@@ -20,6 +21,11 @@ class TaskAssignment(BaseModel):
     employee = models.ForeignKey(Employee, null=True, on_delete=models.SET_NULL)
     organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL)
     engagement = models.ForeignKey(Engagement, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save()
 
     def __str__(self):
         return '%s - %s' % (str(self.employee))
