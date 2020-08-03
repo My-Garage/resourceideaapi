@@ -7,4 +7,5 @@ pytest_plugins = [
     'common.fixtures.engagement',
     'common.fixtures.job_position',
     'common.fixtures.lineofservice',
+    'common.fixtures.task_assignment',
 ]

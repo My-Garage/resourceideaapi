@@ -7,7 +7,7 @@ class TestOrganizationEndpoints:
 
     def test_add_organization(self, api_client):
         url = reverse('organization-list')
-        response = api_client.post(url, {'name': 'Organization xxx', 'status': 'active'})
+        response = api_client.post(url, {'name': 'Organization xxx', 'status': 'ACTIVE'})
 
         response_json = response.json()
 
@@ -38,7 +38,7 @@ class TestOrganizationEndpoints:
 
     def test_update_organization(self, api_client, organization):
         url = reverse('organization-detail', args=[organization.id])
-        response = api_client.put(url, {'name': 'Organization xx 1', 'status': 'active'}, format='json')
+        response = api_client.put(url, {'name': 'Organization xx 1', 'status': 'ACTIVE'}, format='json')
 
         response_json = response.json()
 

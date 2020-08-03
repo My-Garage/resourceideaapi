@@ -5,7 +5,7 @@ from task_assignment.api.views import TaskAssignmentViewSet
 
 
 router = DefaultRouter()
-router.register('', TaskAssignmentViewSet)
+router.register('', TaskAssignmentViewSet, basename='taskassignment')
 
 urlpatterns = [
     path('taskassignments/', include(router.urls), name='taskassignments'),

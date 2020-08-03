@@ -8,6 +8,7 @@ class TaskAssignmentViewSet(mixins.CreateModelMixin,
                             mixins.UpdateModelMixin,
                             mixins.ListModelMixin,
                             mixins.RetrieveModelMixin,
+                            mixins.DestroyModelMixin,
                             viewsets.GenericViewSet):
     """Task assignment view set."""
 

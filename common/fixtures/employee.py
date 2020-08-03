@@ -16,6 +16,6 @@ def employee(organization, job_position):
                                    organization=organization,
                                    phone_number='711187734',
                                    file_number='51251',
-                                   status='active',
+                                   status='ACTIVE',
                                    user=user_account,
                                    is_resource=True)
