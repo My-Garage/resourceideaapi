@@ -1,3 +1,4 @@
+from typing import List
 from employee.models import Employee
 import pytest
 from django.contrib.auth.models import User
@@ -104,3 +105,44 @@ class TestEmployeeEndpoints:
 
         assert resp.status_code == 200
         assert employee.date_terminated is not None
+
+    def test_making_an_employee_a_resource(self, api_client, employee: Employee) -> None:
+        """Test making an employee a resource"""
+        url = reverse('employee-detail', args=[employee.id])
+
+        assert not employee.is_resource
+        employee_data = RetrieveUpdateEmployeeSerializer(employee).data
+        assert employee.is_resource == employee_data['is_resource']
+
+        employee_data['is_resource'] = True
+        resp = api_client.put(url, employee_data, format='json')
+        employee.refresh_from_db()
+
+        assert resp.status_code == 200
+        assert employee.is_resource
+
+    def test_remove_employee_from_resources(self, api_client, employee: Employee) -> None:
+        url = reverse('employee-detail', args=[employee.id])
+
+        employee.is_resource = True
+        employee.save()
+        employee.refresh_from_db()
+        assert employee.is_resource
+
+        employee_data = RetrieveUpdateEmployeeSerializer(employee).data
+        assert employee.is_resource == employee_data['is_resource']
+
+        employee_data['is_resource'] = False
+        response = api_client.put(url, employee_data, format='json')
+        employee.refresh_from_db()
+
+        assert response.status_code == 200
+        assert not employee.is_resource
+
+    def test_list_resources_only(self, api_client, employee_list: List[Employee]) -> None:
+        url = reverse('employee-list')
+        response = api_client.get(url, {'view': 'resources'})
+        response_json = response.json()
+
+        assert response.status_code == 200
+        assert len(response_json) == 2

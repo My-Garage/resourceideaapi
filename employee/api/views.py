@@ -39,7 +39,12 @@ class EmployeeListView(generics.ListAPIView):
     serializer_class = RetrieveUpdateEmployeeSerializer
 
     def get_queryset(self):
-        return _employee_queryset(organization_id=self.request.user.employee.organization_id)
+        queryset = _employee_queryset(organization_id=self.request.user.employee.organization_id)
+        view = self.request.query_params.get('view', None)
+        if view is not None and view == 'resources':
+            queryset = queryset.filter(is_resource=True)
+
+        return queryset
 
 
 class EmployeeRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
