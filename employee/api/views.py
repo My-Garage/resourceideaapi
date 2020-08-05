@@ -68,3 +68,9 @@ class EmployeeTerminateView(APIView):
             return Response(serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ResourcesTimelineView(APIView):
+    """List the resources timeline dashboard"""
+    def get(self, request, format=None):
+        pass

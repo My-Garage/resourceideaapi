@@ -1,3 +1,4 @@
+from common.fixtures.utils.seed_database import seed_test_db
 import pytest
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
@@ -33,3 +34,10 @@ def api_client(user):
     client = APIClient()
     client.force_authenticate(user=user)
     return client
+
+
+@pytest.fixture(scope='session')
+def test_db_seed(django_db_setup, django_db_blocker):
+    with django_db_blocker.unblock():
+        seed_test_db()
+        django_db_blocker.restore()
