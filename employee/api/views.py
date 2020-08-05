@@ -60,10 +60,11 @@ class EmployeeTerminateView(APIView):
         employee = get_object_or_404(Employee, pk=pk)
 
         date_terminated = timezone.now().strftime('%Y-%m-%d')
-        data = {"date_terminated": date_terminated}
+        data = {"date_terminated": date_terminated, "is_deleted": True}
         serializer = TerminateEmployeeSerializer(employee, data=data, partial=True)
 
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

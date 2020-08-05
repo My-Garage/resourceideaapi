@@ -105,6 +105,7 @@ class TestEmployeeEndpoints:
 
         assert resp.status_code == 200
         assert employee.date_terminated is not None
+        assert employee.is_deleted
 
     def test_making_an_employee_a_resource(self, api_client, employee: Employee) -> None:
         """Test making an employee a resource"""

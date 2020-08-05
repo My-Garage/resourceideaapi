@@ -78,5 +78,5 @@ class TerminateEmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ['id', 'first_name', 'last_name', 'job_position_id', 'organization_id', 'phone_number',
+        fields = ['id', 'first_name', 'last_name', 'job_position_id', 'organization_id', 'phone_number', 'is_deleted',
                   'is_resource', 'status', 'date_terminated']
