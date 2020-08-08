@@ -1,5 +1,5 @@
 from rest_framework import mixins
-from rest_framework import viewsets
+from rest_framework import viewsets  # type: ignore
 
 from client.api.serializers import ClientSerializer
 from client.models import Client
@@ -14,9 +14,9 @@ class ClientViewSet(mixins.CreateModelMixin,
                     viewsets.GenericViewSet):
     """Client view set"""
 
-    queryset = Client.objects.none()
+    queryset = Client.objects.none()  # type: ignore
     serializer_class = ClientSerializer
 
     def get_queryset(self):
-        queryset = filter_by_organization(model=Client, organization_id=self.request.user.employee.organization_id)
+        queryset = filter_by_organization(model=Client, organization_id=self.request.user.employee.organization_id)  # type: ignore
         return queryset

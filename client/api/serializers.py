@@ -12,11 +12,11 @@ from organization.api.serializers import OrganizationSerializer
 class ClientSerializer(serializers.ModelSerializer):
     """Client serializer"""
 
-    client_industry_id = serializers.UUIDField()
+    client_industry_id = serializers.UUIDField()  # type: ignore
     client_industry = ClientIndustrySerializer(read_only=True)
-    organization_id = serializers.UUIDField()
+    organization_id = serializers.UUIDField()  # type: ignore
     organization = OrganizationSerializer(read_only=True)
-    name_slug = serializers.CharField(read_only=True)
+    name_slug = serializers.CharField(read_only=True)  # type: ignore
 
     class Meta:
         model = Client
@@ -30,21 +30,21 @@ class ClientSerializer(serializers.ModelSerializer):
 
         client_name = validated_data.get('name', None)
         if client_name is None:
-            raise serializers.ValidationError('name is required')
+            raise serializers.ValidationError('name is required')  # type: ignore
 
-        return Client.objects.create(name=validated_data['name'],
+        return Client.objects.create(name=validated_data['name'],  # type: ignore
                                      address=validated_data['address'],
                                      client_industry_id=validated_data['client_industry_id'],
                                      organization_id=organization_id)
 
     def update(self, instance: Client, validated_data: Dict):
         name_slug = re.sub(r'\W', '-', validated_data['name'].lower())
-        client_with_slug: Client = Client.objects.filter(name_slug=name_slug).first()
+        client_with_slug: Client = Client.objects.filter(name_slug=name_slug).first()  # type: ignore
         if client_with_slug is not None and instance.id != client_with_slug.id:
-            raise serializers.ValidationError('Client with name already exists')
+            raise serializers.ValidationError('Client with name already exists')  # type: ignore
 
         instance.name = validated_data['name']
         instance.address = validated_data['address']
-        instance.client_industry_id = validated_data['client_industry_id']
+        instance.client_industry_id = validated_data['client_industry_id']  # type: ignore
         instance.save()
         return instance

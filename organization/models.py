@@ -18,7 +18,7 @@ class Organization(BaseModel):
         db_table = 'organization'
 
     def save(self, *args, **kwargs):
-        self.name_slug = re.sub(r'\W', '-', self.name.lower())
+        self.name_slug = re.sub(r'\W', '-', self.name.lower())  # type: ignore
         super(Organization, self).save(*args, **kwargs)
 
     def delete(self, using=None, keep_parents=False):

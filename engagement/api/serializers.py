@@ -1,3 +1,4 @@
+# type: ignore
 from rest_framework import serializers
 
 from client.api.serializers import ClientSerializer

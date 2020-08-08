@@ -14,7 +14,7 @@ def engagement(
         client: Client,
         employee: Employee,
         lineofservice: LineOfService):
-    return Engagement.objects.create(
+    return Engagement.objects.create(  # type: ignore
         title='Engagement 1',
         description='Engagement description',
         client_id=client.id,

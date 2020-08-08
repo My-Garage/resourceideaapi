@@ -19,5 +19,5 @@ def filter_by_organization(model: Generic[T], organization_id: str) -> QuerySet:
     Returns:
         QuerySet of the active resources of an organization whose ID has been supplied.
     """
-    queryset = model.objects.filter(organization_id=organization_id, is_deleted=False, deleted_at__isnull=True)
+    queryset = model.objects.filter(organization_id=organization_id, is_deleted=False, deleted_at__isnull=True)  # type: ignore
     return queryset

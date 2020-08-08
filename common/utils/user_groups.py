@@ -7,7 +7,7 @@ from common.utils.permission_lists import resource_permissions
 def create_resource_groups():
     try:
         resources_group = Group.objects.get(name='organization_resource')
-    except Group.DoesNotExist:
+    except Group.DoesNotExist:  # type: ignore
         resources_group = Group.objects.create(name='organization_resource')
 
     resource_permissions_query = Permission.objects\
@@ -21,7 +21,7 @@ def create_administrator_groups():
     try:
         administrator_group = Group.objects\
             .get(name='organization_administrator')
-    except Group.DoesNotExist:
+    except Group.DoesNotExist:  # type: ignore
         administrator_group = Group.objects\
             .create(name='organization_administrator')
 

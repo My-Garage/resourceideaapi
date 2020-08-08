@@ -1,3 +1,4 @@
+# type: ignore
 from common.enums import ProgressStatus
 from rest_framework import serializers
 

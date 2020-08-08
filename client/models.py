@@ -21,7 +21,7 @@ class Client(BaseModel):
         db_table = 'client'
 
     def save(self, *args, **kwargs):
-        self.name_slug = re.sub(r'\W', '-', self.name.lower())
+        self.name_slug = re.sub(r'\W', '-', self.name.lower())  # type: ignore
         super(Client, self).save(*args, **kwargs)
 
     def __str__(self):

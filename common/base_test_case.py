@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
 
-from common.utils import create_administrator_groups
-from common.utils import create_resource_groups
+from common.utils import create_administrator_groups  # type: ignore
+from common.utils import create_resource_groups  # type: ignore
 from organization.models import Organization
 
 
@@ -19,7 +19,7 @@ class BaseAPITestCase(APITestCase):
                                              last_name='Joseph')
         self.user.is_active = True
         self.user.save()
-        self.organization = Organization.objects.create(name='Test Org',
+        self.organization = Organization.objects.create(name='Test Org',  # type: ignore
                                                         status='active')
         response = self.client.post(
             '/api/token/',

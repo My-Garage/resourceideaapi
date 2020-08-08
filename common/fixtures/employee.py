@@ -19,7 +19,7 @@ def _create_user(email: str, username: str, **kwargs) -> User:
 
 def _create_employee(phone_number: str, file_number: str, **kwargs) -> Employee:
     """Utility function to create an employee"""
-    return Employee.objects.create(job_position_id=kwargs.get('job_position_id', None),
+    return Employee.objects.create(job_position_id=kwargs.get('job_position_id', None),  # type: ignore
                                    organization_id=kwargs.get('organization_id', None),
                                    phone_number=phone_number,
                                    file_number=file_number,
@@ -32,7 +32,7 @@ def _create_employee(phone_number: str, file_number: str, **kwargs) -> Employee:
 def employee(organization: Organization, job_position: JobPosition):
     user_account = _create_user(email='test@mail.com', username='testuser')
     return _create_employee(job_position_id=job_position.id, organization_id=organization.id, file_number='51251',
-                            user_account_id=user_account.id, phone_number='711187734', status='ACTIVE')
+                            user_account_id=user_account.id, phone_number='711187734', status='ACTIVE')  # type: ignore
 
 
 @pytest.fixture(scope='function')
@@ -42,10 +42,10 @@ def employee_list(organization, job_position) -> List[Employee]:
     user_account_1: User = _create_user(email='test+user1@mail.com', username='testuser1')
     user_account_2: User = _create_user(email='test+user2@mail.com', username='testuser2')
     employee_dir.append(_create_employee(job_position_id=job_position.id, organization_id=organization.id,
-                                         file_number='51252', user_account_id=user_account_1.id,
+                                         file_number='51252', user_account_id=user_account_1.id,  # type: ignore
                                          phone_number='711134544', status='ACTIVE', is_resource=True))
     employee_dir.append(_create_employee(job_position_id=job_position.id, organization_id=organization.id,
-                                         file_number='51253', user_account_id=user_account_2.id,
+                                         file_number='51253', user_account_id=user_account_2.id,  # type: ignore
                                          phone_number='711134534', status='ACTIVE', is_resource=True))
 
     return employee_dir

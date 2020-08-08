@@ -1,6 +1,6 @@
 from rest_framework import mixins
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets  # type: ignore
+from rest_framework.permissions import IsAuthenticated  
 from rest_framework.response import Response
 
 from organization.api.serializers import OrganizationSerializer
@@ -13,7 +13,7 @@ class OrganizationViewSet(mixins.UpdateModelMixin,
                           mixins.RetrieveModelMixin,
                           mixins.DestroyModelMixin,
                           viewsets.GenericViewSet):
-    queryset = Organization.objects.all()
+    queryset = Organization.objects.all()  # type: ignore
     serializer_class = OrganizationSerializer
     permission_classes = (IsAuthenticated, )
 

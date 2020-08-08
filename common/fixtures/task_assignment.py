@@ -4,12 +4,11 @@ from task_assignment.models import TaskAssignment
 from organization.models import Organization
 from employee.models import Employee
 from engagement.models import Engagement
-from lineofservice.models import LineOfService
 
 
 @pytest.fixture(scope='function')
 def task_assignment(organization: Organization, engagement: Engagement, employee: Employee) -> None:
-    return TaskAssignment.objects.create(
+    return TaskAssignment.objects.create(  # type: ignore
         task='Task assignment 1',
         start_date_time='2020-08-03T08:00:00',
         end_date_time='2020-08-03T17:00:00',

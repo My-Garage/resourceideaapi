@@ -69,7 +69,7 @@ class TestEmployeeEndpoints:
 
         resp = api_client.put(url, employee_data, format='json')
 
-        employee_query = Employee.objects.get(pk=employee.id)
+        employee_query = Employee.objects.get(pk=employee.id)  # type: ignore
 
         assert resp.status_code == 200
         assert first_name_before != employee_data['first_name']
