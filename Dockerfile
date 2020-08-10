@@ -29,9 +29,6 @@ RUN pip3 install -r requirements.dev.txt
 # Copy all project files to the working directory
 COPY . /code/
 
-# # source secret key
-# RUN /bin/bash -c "source .env"
-
 # export secret key
 ENV SECRET_KEY=SENwSzdDakJhNDJteTQK
 
