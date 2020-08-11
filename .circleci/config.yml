@@ -19,10 +19,10 @@ jobs:
           PGUSER: root
           SECRET_KEY: SENwSzdDakJhNDJteTQK
           DB_NAME: resourceidea
-          DB_HOST: localhost
+          DB_HOST: resourceideaapi-do-user-7537729-0.a.db.ondigitalocean.com
           DB_USER: resourcepostgres
-          DB_PASSWORD: postgres
-          DB_PORT: 5432
+          DB_PASSWORD: wzk2w2tugj7ey8v8
+          DB_PORT: 25060
 
       - image: circleci/postgres:9.6.2
         environment:
@@ -103,4 +103,6 @@ workflows:
             - build
           filters:
             branches:
-              only: develop
+              only: 
+                - develop
+                - scott/api-deploy
