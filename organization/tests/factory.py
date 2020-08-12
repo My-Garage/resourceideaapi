@@ -7,7 +7,7 @@ faker = Faker()
 faker.add_provider(company)
 
 
-class OrganizationFactory(factory.DjangoModelFactory):
+class OrganizationFactory(factory.django.DjangoModelFactory):
     name = faker.company()
 
     class Meta:
