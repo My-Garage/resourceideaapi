@@ -27,7 +27,7 @@ class ClientIndustrySerializer(serializers.ModelSerializer):
         if client_industry_name is None:
             raise serializers.ValidationError('name is required')  # type: ignore
 
-        return ClientIndustry.objects.create(name=client_industry_name, organization_id=organization_id) # type: ignore
+        return ClientIndustry.objects.create(name=client_industry_name, organization_id=organization_id)  # type: ignore
 
     def update(self, instance, validated_data):
         name_slug = re.sub(r'\W', '-', validated_data['name'].lower())

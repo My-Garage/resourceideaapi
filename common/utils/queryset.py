@@ -8,7 +8,7 @@ from client_industry.models import ClientIndustry
 T = TypeVar('T', Client, ClientIndustry)
 
 
-def filter_by_organization(model: Generic[T], organization_id: str) -> QuerySet:
+def filter_by_organization(model: Generic[T], organization_id: str) -> QuerySet:  # type: ignore
     """
     Filters active resources that belong to an organization.
 

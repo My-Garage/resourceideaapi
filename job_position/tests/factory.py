@@ -18,7 +18,7 @@ class JobPositionFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = 'job_position.JobPosition'
-    
+
     title = faker.word()
     department = faker.word()
     hierarchy_order = faker.pyint(max_value=10)

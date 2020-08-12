@@ -7,5 +7,5 @@ def verify_name_slug(name_slug: str, usage_count: int) -> str:
     if usage_count > 0:
         random_slug_suffix = generate_random_string(size=4)
         name_slug = f'{name_slug}-{random_slug_suffix}'
-    
+
     return name_slug

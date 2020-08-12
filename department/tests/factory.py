@@ -14,7 +14,7 @@ class DepartmentFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = 'department.Department'
-    
+
     name = faker.word()
 
     organization = factory.SubFactory(OrganizationFactory)
