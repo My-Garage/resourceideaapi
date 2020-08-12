@@ -1,5 +1,5 @@
 from rest_framework import mixins
-from rest_framework import viewsets
+from rest_framework import viewsets  # type: ignore
 from task_assignment.models import TaskAssignment
 from task_assignment.api.serializers import TaskAssignmentSerializer
 
@@ -12,5 +12,5 @@ class TaskAssignmentViewSet(mixins.CreateModelMixin,
                             viewsets.GenericViewSet):
     """Task assignment view set."""
 
-    queryset = TaskAssignment.objects.all()
+    queryset = TaskAssignment.objects.all()  # type: ignore
     serializer_class = TaskAssignmentSerializer

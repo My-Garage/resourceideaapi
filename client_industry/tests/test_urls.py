@@ -1,8 +1,6 @@
 import pytest
 from rest_framework.reverse import reverse
 
-from client_industry.models import ClientIndustry
-
 
 class TestClientIndustryEndpoints:
     pytestmark = [pytest.mark.system, pytest.mark.django_db]
@@ -23,7 +21,7 @@ class TestClientIndustryEndpoints:
         assert response_json['name_slug'] == 'test-client-name'
         assert response_json['organization']['id'] == str(organization.id)
 
-    def test_update_client_industry(self, api_client, organization, client_industry: ClientIndustry) -> None:
+    def test_update_client_industry(self, api_client, organization, client_industry) -> None:
         url = reverse('clientindustries-detail', args=[client_industry.id])
         test_data = {'name': 'Updated client name', 'organization_id': organization.id}
         response = api_client.put(url, test_data, format='json')
@@ -35,7 +33,7 @@ class TestClientIndustryEndpoints:
         assert client_industry.name_slug == 'updated-client-name'
         assert response_json['name_slug'] == client_industry.name_slug
 
-    def test_retrieve_client_industry(self, api_client, client_industry: ClientIndustry) -> None:
+    def test_retrieve_client_industry(self, api_client, client_industry) -> None:
         url = reverse('clientindustries-detail', args=[client_industry.id])
         response = api_client.get(url)
 

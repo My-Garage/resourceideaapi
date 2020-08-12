@@ -11,7 +11,7 @@ from organization.api.serializers import OrganizationSerializer
 class ClientIndustrySerializer(serializers.ModelSerializer):
     """Client industry serializer"""
 
-    organization_id = serializers.UUIDField(write_only=True)
+    organization_id = serializers.UUIDField(write_only=True)  # type: ignore
     organization = OrganizationSerializer(read_only=True)
 
     class Meta:
@@ -25,15 +25,15 @@ class ClientIndustrySerializer(serializers.ModelSerializer):
 
         client_industry_name = validated_data.get('name', None)
         if client_industry_name is None:
-            raise serializers.ValidationError('name is required')
+            raise serializers.ValidationError('name is required')  # type: ignore
 
-        return ClientIndustry.objects.create(name=client_industry_name, organization_id=organization_id)
+        return ClientIndustry.objects.create(name=client_industry_name, organization_id=organization_id)  # type: ignore
 
     def update(self, instance, validated_data):
         name_slug = re.sub(r'\W', '-', validated_data['name'].lower())
-        client_industry_with_slug: ClientIndustry = ClientIndustry.objects.filter(name_slug=name_slug).first()
+        client_industry_with_slug: ClientIndustry = ClientIndustry.objects.filter(name_slug=name_slug).first()  # type: ignore
         if client_industry_with_slug is not None and instance.id != client_industry_with_slug.id:
-            raise serializers.ValidationError('Client industry with name already exists')
+            raise serializers.ValidationError('Client industry with name already exists')  # type: ignore
 
         instance.name = validated_data['name']
         instance.save()

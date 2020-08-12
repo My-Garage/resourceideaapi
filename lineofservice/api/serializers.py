@@ -8,7 +8,7 @@ class LineOfServiceSerializer(serializers.ModelSerializer):
     """Line of service serializer"""
 
     organization = OrganizationSerializer(read_only=True)
-    organization_id = serializers.UUIDField(write_only=True)
+    organization_id = serializers.UUIDField(write_only=True)  # type: ignore
 
     class Meta:
         model = LineOfService

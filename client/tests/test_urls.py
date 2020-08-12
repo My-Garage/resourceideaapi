@@ -10,7 +10,9 @@ class TestClientEndpoints:
 
     def test_list_clients(self, api_client):
         url = reverse('client-list')
+
         response = api_client.get(url)
+
         assert response.status_code == 200
 
     def test_add_client(self, api_client, organization, client_industry) -> None:
@@ -25,10 +27,13 @@ class TestClientEndpoints:
         assert response_json['name_slug'] == 'test-client-name'
         assert response_json['organization']['id'] == str(organization.id)
 
-    def test_retrieve_client(self, api_client, client: Client) -> None:
+    def test_retrieve_client(self, api_client, client) -> None:
         url = reverse('client-detail', args=[client.id])
-        response = api_client.get(url)
 
+        client_query: Client = Client.objects.get(pk=client.id)  # type: ignore
+        assert client_query is not None
+
+        response = api_client.get(url)
         response_json = response.json()
 
         assert response.status_code == 200

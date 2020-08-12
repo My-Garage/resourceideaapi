@@ -1,5 +1,5 @@
 from rest_framework import mixins
-from rest_framework import viewsets
+from rest_framework import viewsets  # type: ignore
 from rest_framework.response import Response
 
 from lineofservice.api.serializers import LineOfServiceSerializer
@@ -16,7 +16,7 @@ class LineOfServiceViewSet(mixins.CreateModelMixin,
     serializer_class = LineOfServiceSerializer
 
     def get_queryset(self):
-        return LineOfService.objects.filter(organization=self.request.user.employee.organization)
+        return LineOfService.objects.filter(organization=self.request.user.employee.organization)  # type: ignore
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()

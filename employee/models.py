@@ -37,30 +37,30 @@ class Employee(BaseModel):
 
     @property
     def fullname(self):
-        return self.user.get_full_name()
+        return self.user.get_full_name()  # type: ignore
 
     @property
     def first_name(self):
-        return self.user.first_name
+        return self.user.first_name  # type: ignore
 
     @property
     def last_name(self):
-        return self.user.last_name
+        return self.user.last_name  # type: ignore
 
     @property
     def email(self):
-        return self.user.email
+        return self.user.email  # type: ignore
 
     @property
     def job_position_title(self):
         title = None
         if self.job_position is not None:
-            title = self.job_position.title
+            title = self.job_position.title  # type: ignore
         return title
 
     @property
     def username(self):
-        return self.user.username
+        return self.user.username  # type: ignore
 
     def delete(self, using=None, keep_parents=False):
         self.is_deleted = True
@@ -68,4 +68,4 @@ class Employee(BaseModel):
         self.save()
 
     def __str__(self):
-        return '%s %s' % (self.user.first_name, self.user.last_name)
+        return '%s %s' % (self.user.first_name, self.user.last_name)  # type: ignore

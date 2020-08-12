@@ -21,7 +21,7 @@ class ClientIndustry(BaseModel):
 
     def save(self, *args, **kwargs):
         if self.is_deleted is not True:
-            self.name_slug = re.sub(r'\W', '-', self.name.lower())
+            self.name_slug = re.sub(r'\W', '-', self.name.lower())  # type: ignore
         super(ClientIndustry, self).save(*args, **kwargs)
 
     def delete(self, using=None, keep_parents=False):

@@ -1,3 +1,4 @@
+# type: ignore
 from rest_framework import serializers
 
 from department.api.serializers import DepartmentSerializer

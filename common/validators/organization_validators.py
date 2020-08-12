@@ -34,5 +34,5 @@ def get_request_organization_id(request_data: Dict) -> str:
     """
     organization_id = request_data.get('organization_id', None)
     if organization_id is None:
-        raise serializers.ValidationError('organization_id is required')
+        raise serializers.ValidationError('organization_id is required')  # type: ignore
     return organization_id

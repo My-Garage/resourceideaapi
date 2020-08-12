@@ -3,11 +3,11 @@ from typing import NewType
 
 from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404
-from rest_framework import generics
+from rest_framework import generics  # type: ignore
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.utils import timezone
-from rest_framework import status
+from rest_framework import status  # type: ignore
 
 from employee.api.serializers import EmployeeCreateSerializer, RetrieveUpdateEmployeeSerializer, TerminateEmployeeSerializer
 from employee.models import Employee
@@ -20,14 +20,14 @@ def _employee_queryset(organization_id: OrganizationId) -> QuerySet:
     """
     Returns the active employees queryset
     """
-    return Employee.objects.filter(organization_id=organization_id,
+    return Employee.objects.filter(organization_id=organization_id,  # type: ignore
                                    is_deleted=False,
                                    deleted_at__isnull=True,
                                    date_terminated__isnull=True)
 
 
 class EmployeeCreateView(generics.CreateAPIView):
-    queryset = Employee.objects.none()
+    queryset = Employee.objects.none()  # type: ignore
     serializer_class = EmployeeCreateSerializer
 
     def get_queryset(self):
@@ -35,7 +35,7 @@ class EmployeeCreateView(generics.CreateAPIView):
 
 
 class EmployeeListView(generics.ListAPIView):
-    queryset = Employee.objects.none()
+    queryset = Employee.objects.none()  # type: ignore
     serializer_class = RetrieveUpdateEmployeeSerializer
 
     def get_queryset(self):
@@ -48,7 +48,7 @@ class EmployeeListView(generics.ListAPIView):
 
 
 class EmployeeRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Employee.objects.none()
+    queryset = Employee.objects.none()  # type: ignore
     serializer_class = RetrieveUpdateEmployeeSerializer
 
     def get_queryset(self):
@@ -68,3 +68,9 @@ class EmployeeTerminateView(APIView):
             return Response(serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ResourcesTimelineView(APIView):
+    """List the resources timeline dashboard"""
+    def get(self, request, format=None):
+        pass
