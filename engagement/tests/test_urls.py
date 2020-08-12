@@ -1,5 +1,4 @@
 from client.models import Client
-from organization.models import Organization
 import pytest
 from rest_framework.reverse import reverse
 
@@ -15,11 +14,7 @@ class TestEngagementEndpoints:
         response = api_client.get(url)
         assert response.status_code == 200
 
-    def test_add_engagement(
-            self,
-            api_client,
-            organization: Organization,
-            client: Client) -> None:
+    def test_add_engagement(self, api_client, organization, client: Client) -> None:
         url = reverse('engagement-list')
         test_data = {
             'title': 'Test engagement',

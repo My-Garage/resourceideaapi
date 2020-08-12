@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from rest_framework.reverse import reverse
 
 from employee.api.serializers import RetrieveUpdateEmployeeSerializer
-from job_position.models import JobPosition
-from organization.models import Organization
 
 
 class TestEmployeeEndpoints:
@@ -21,41 +19,41 @@ class TestEmployeeEndpoints:
         assert resp.status_code == 200
         assert isinstance(resp_body, list)
 
-    def test_add_employee(self, api_client, organization: Organization, job_position: JobPosition):
+    def test_add_employee(self, api_client, organization, job_position):
         url = reverse('employee-create')
-        resp = api_client.post(url, {'file_number': '51251',
-                                     'organization_id': organization.id,
-                                     'phone_number': '0782147101',
-                                     'status': 'ACTIVE',
-                                     'first_name': 'Test',
-                                     'last_name': 'User',
-                                     'username': 'testuser',
-                                     'email': 'tuser@mail.com',
-                                     'job_position_id': job_position.id,
-                                     'is_resource': False}, format='json')
+        response = api_client.post(url, {'file_number': '51251',
+                                         'organization_id': organization.id,
+                                         'phone_number': '0782147101',
+                                         'status': 'ACTIVE',
+                                         'first_name': 'Test',
+                                         'last_name': 'User',
+                                         'username': 'testuser',
+                                         'email': 'tuser@mail.com',
+                                         'job_position_id': job_position.id,
+                                         'is_resource': False}, format='json')
 
-        resp_json = resp.json()
+        response_json = response.json()
 
-        assert resp.status_code == 201
-        assert 'first_name' in resp_json
-        assert resp_json['first_name'] == 'Test'
-        assert 'last_name' in resp_json
-        assert resp_json['last_name'] == 'User'
+        assert response.status_code == 201
+        assert 'first_name' in response_json
+        assert response_json['first_name'] == 'Test'
+        assert 'last_name' in response_json
+        assert response_json['last_name'] == 'User'
 
         user_account = User.objects.filter(username='testuser')[0]
         assert user_account is not None
         assert user_account.get_full_name() == 'Test User'
 
-    def test_retrieve_employee_details(self, api_client, employee: Employee):
+    def test_retrieve_employee_details(self, api_client, employee):
         url = reverse('employee-detail', args=[employee.id])
-        resp = api_client.get(url)
+        response = api_client.get(url)
 
-        resp_body = resp.json()
+        response_json = response.json()
 
-        assert resp.status_code == 200
-        assert 'id' in resp_body
+        assert response.status_code == 200
+        assert 'id' in response_json
 
-    def test_update_employee(self, api_client, employee: Employee) -> None:
+    def test_update_employee(self, api_client, employee) -> None:
         """
         Test endpoint url that updates an employee detail.
         """
@@ -67,11 +65,11 @@ class TestEmployeeEndpoints:
         first_name_before = employee_data['first_name']
         employee_data['first_name'] = 'Changed'
 
-        resp = api_client.put(url, employee_data, format='json')
+        response = api_client.put(url, employee_data, format='json')
 
         employee_query = Employee.objects.get(pk=employee.id)  # type: ignore
 
-        assert resp.status_code == 200
+        assert response.status_code == 200
         assert first_name_before != employee_data['first_name']
         assert employee_query.first_name == employee_data['first_name']
 
@@ -107,28 +105,28 @@ class TestEmployeeEndpoints:
         assert employee.date_terminated is not None
         assert employee.is_deleted
 
+    @pytest.mark.parametrize('employee__is_resource', [False])
     def test_making_an_employee_a_resource(self, api_client, employee: Employee) -> None:
         """Test making an employee a resource"""
+        assert not employee.is_resource
+
         url = reverse('employee-detail', args=[employee.id])
 
-        assert not employee.is_resource
         employee_data = RetrieveUpdateEmployeeSerializer(employee).data
         assert employee.is_resource == employee_data['is_resource']
 
         employee_data['is_resource'] = True
-        resp = api_client.put(url, employee_data, format='json')
+        response = api_client.put(url, employee_data, format='json')
         employee.refresh_from_db()
 
-        assert resp.status_code == 200
+        assert response.status_code == 200
         assert employee.is_resource
 
+    @pytest.mark.parametrize('employee__is_resource', [True])
     def test_remove_employee_from_resources(self, api_client, employee: Employee) -> None:
-        url = reverse('employee-detail', args=[employee.id])
-
-        employee.is_resource = True
-        employee.save()
-        employee.refresh_from_db()
         assert employee.is_resource
+
+        url = reverse('employee-detail', args=[employee.id])
 
         employee_data = RetrieveUpdateEmployeeSerializer(employee).data
         assert employee.is_resource == employee_data['is_resource']
@@ -140,10 +138,10 @@ class TestEmployeeEndpoints:
         assert response.status_code == 200
         assert not employee.is_resource
 
-    def test_list_resources_only(self, api_client, employee_list: List[Employee]) -> None:
+    def test_list_resources_only(self, api_client, employees_list: List[Employee]) -> None:
         url = reverse('employee-list')
         response = api_client.get(url, {'view': 'resources'})
-        response_json = response.json()
 
         assert response.status_code == 200
-        assert len(response_json) == 2
+        assert response.request['PATH_INFO'] == '/api/v0.1/employees/'
+        assert response.request['QUERY_STRING'] == 'view=resources'

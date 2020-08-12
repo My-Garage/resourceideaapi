@@ -9,11 +9,12 @@ faker = Faker()
 faker.add_provider(lorem)
 
 
-class ClientIndustryFactory(factory.django.DjangoModelFactory):
-    """Client industry factory"""
+class DepartmentFactory(factory.django.DjangoModelFactory):
+    """Department factory"""
 
     class Meta:
-        model = 'client_industry.ClientIndustry'
-
+        model = 'department.Department'
+    
     name = faker.word()
+
     organization = factory.SubFactory(OrganizationFactory)

@@ -1,6 +1,7 @@
 {
     "exclude": [
-        "**/typings"
+        "**/typings",
+        "~/.pyenv/versions/resourceidea"
     ],
     "stubPath": "typings",
     "venvPath": "/Users/josephserunjogi/.pyenv/versions/3.8.2/envs/resourceideaapi",

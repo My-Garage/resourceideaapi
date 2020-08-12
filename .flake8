@@ -4,6 +4,4 @@ ignore =
     E501 */migrations/*,
     F401 */__init__.py
 exclude=
-    *.py, typings/
-extend-exclude=
-    typings/
+    typings/*
