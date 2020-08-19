@@ -73,4 +73,4 @@ class EmployeeTerminateView(APIView):
 class ResourcesTimelineView(APIView):
     """List the resources timeline dashboard"""
     def get(self, request, format=None):
-        pass
+        return Response({'message': 'OK'})
